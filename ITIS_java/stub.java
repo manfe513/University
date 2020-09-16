@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
-class example {
+class dz {
 
 public static void main(String[] args) {
 
 Scanner sc = new Scanner(System.in);
 
 System.out.println("Enter a number:");
-int enteredNumber = sc.readInt();
+int enteredNumber = sc.nextInt();
 
-System.out.println("Your num
+System.out.printf("");
 sc.close();
 }}
