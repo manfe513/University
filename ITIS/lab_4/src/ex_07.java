@@ -3,6 +3,26 @@
  * и этот массив заполняется «змейкой»: сначала первая строка (слева направо),
  * затем последний столбец (снизу вверх), вторая строка (слева направо) и так
  * далее.
+ *
+ *
+ * Программа работает следующим образом:
+ *
+ * Первый проход - строка слева направо
+ * 123 - порядок заполнения
+ * ___
+ *
+ * 777
+ * ###
+ * ###
+ *
+ * Второй проход - колонка снизу вверх ДО 0ой строки, в которой уже есть цифра
+ * 777
+ * ##7 // - 2: порядок заполнения
+ * ##7 // - 1: порядок заполнения
+ *
+ * и так далее.
+ *
+ * Если свернуть окно вывода до 5 строк в высоту - можно увидеть анимацию заполнения массива (с задержкой)
  */
 
 import java.util.Random;
@@ -32,18 +52,15 @@ public class ex_07 {
 
         int[][] nums = new int[rows][cols];
 
-        //todo: think
-        for (int i = 0 ; i < rows; i++) {
+        for (int i = 0 ; i < rowsToFill; i++) {
 
-            if(rowsToFill == 0) continue;
-            for (int j = 0; j < cols; j++) { fillItem(nums, i, j); }
+            for (int j = 0; j < colsToFill; j++) { fillItem(nums, i, j); }
             rowsToFill--;
 
-            if(colsToFill == 0) continue;
-            for(int k = rows-1; k >= rows-rowsToFill; k--) {
-                for (int j = colsToFill-1; j >= 0; j--) { fillItem(nums, k, j); }
-            }
+            for(int r = rows-1; r > i; r--) { fillItem(nums, r, colsToFill-1); }
             colsToFill--;
+
+            if(colsToFill == 0) break;
         }
 
         return nums;
