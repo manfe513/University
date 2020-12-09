@@ -20,19 +20,7 @@ public class ex_3 {
      */
     public static void main(String[] args) {
 
-        printRecursive(recursiveInput(new ArrayList<>()));
-    }
-
-    private static ArrayList<Integer> recursiveInput(ArrayList<Integer> enteredNums) {
-
-        System.out.println("Введите число >0 или -1 для выхода:");
-        int num = sc.nextInt();
-
-        if(num == -1) return enteredNums;
-
-        enteredNums.add(num);
-
-        return recursiveInput(enteredNums);
+        printRecursive(Helper.recursiveNumsInput(new ArrayList<>()));
     }
 
     private static void printRecursive(ArrayList<Integer> nums) {
