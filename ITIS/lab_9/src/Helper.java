@@ -17,21 +17,49 @@ public class Helper {
         return sc.nextLine();
     }
 
-    static int[] recursiveNumsInput(ArrayList<Integer> enteredNums) {
+    static void skip() {
+        sc.next();
+    }
+
+    static int[] recursivePositiveNumsInput(ArrayList<Integer> inputNums) {
+        if(inputNums == null) {
+            inputNums = new ArrayList<>();
+        }
 
         System.out.println("Введите число >0 или -1 для выхода:");
         int num = sc.nextInt();
 
         if(num == -1) {
-            int[] nums = new int[enteredNums.size()];
+            int[] nums = new int[inputNums.size()];
             for (int i = 0; i < nums.length; i++) {
-                nums[i] = enteredNums.get(i);
+                nums[i] = inputNums.get(i);
             }
             return nums;
         }
 
-        enteredNums.add(num);
+        inputNums.add(num);
 
-        return recursiveNumsInput(enteredNums);
+        return recursivePositiveNumsInput(inputNums);
+    }
+
+    static int[] recursiveNumsInput(int size, ArrayList<Integer> inputNums) {
+        if(inputNums == null) {
+            inputNums = new ArrayList<>();
+        }
+
+        System.out.println("Введите число:");
+        int num = sc.nextInt();
+
+        inputNums.add(num);
+
+        if(inputNums.size() == size) {
+            int[] nums = new int[inputNums.size()];
+            for (int i = 0; i < nums.length; i++) {
+                nums[i] = inputNums.get(i);
+            }
+            return nums;
+        }
+
+        return recursiveNumsInput(size, inputNums);
     }
 }
