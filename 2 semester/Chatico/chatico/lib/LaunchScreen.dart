@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chatico/RegistrationScreen.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
@@ -57,19 +58,7 @@ class LaunchScreenState extends State<LaunchScreen> {
 
   void pushRegistrationScreen() {
       Navigator.of(context).push(
-        
-        MaterialPageRoute(
-            builder: (BuildContext buildContext) {
-
-
-              return Scaffold(
-                appBar: AppBar(
-                  title: Text("Saved list")
-                ),
-                // body: ListView(children: dividedTiles),
-              );
-            }
-        )
+        MaterialPageRoute(builder: (BuildContext buildContext) => RegistrationScreen())
       );
   }
 
