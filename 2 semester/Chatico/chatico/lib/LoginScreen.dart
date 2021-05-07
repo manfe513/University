@@ -6,17 +6,16 @@ import 'package:flutter/material.dart';
 
 import 'style/ButtonWhiteStyle.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key key}) : super(key: key);
 
   @override
-  RegistrationScreenState createState() => RegistrationScreenState();
+  LoginScreenState createState() => LoginScreenState();
 }
 
-class RegistrationScreenState extends State<RegistrationScreen> {
+class LoginScreenState extends State<LoginScreen> {
   final loginController = TextEditingController();
   final passController = TextEditingController();
-  final confirmPassController = TextEditingController();
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -36,7 +35,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Регистрация",
+                      "Вход",
                       style: TextStyle(color: Colors.white, fontSize: 26),
                     )
                   ],
@@ -50,20 +49,16 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                   padding: EdgeInsets.all(10),
                   child: TextFieldLogin("Пароль", passController)
               ),
-              Padding(
-                  padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Повторите пароль", confirmPassController)
-              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Padding(
                     padding: EdgeInsets.all(10),
                     child: SizedBox(
-                      width: 200,
+                      width: 100,
                       child: ElevatedButton(
                         onPressed: checkLogin,
-                        child: Text("Зарегистрироваться", style: TextStyle(color: Theme.of(context).primaryColor),),
+                        child: Text("Войти", style: TextStyle(color: Theme.of(context).primaryColor),),
                         style: ButtonStyleWhite(),
                       ),
                     ),

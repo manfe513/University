@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:chatico/RegistrationScreen.dart';
-import 'package:english_words/english_words.dart';
+import 'package:chatico/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
+import 'RegistrationScreen.dart';
 import 'style/ButtonWhiteStyle.dart';
 
 class LaunchScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class LaunchScreenState extends State<LaunchScreen> {
           SizedBox(
             width: 200,
             child: ElevatedButton(
-              onPressed: pushRegistrationScreen,
+              onPressed: pushLoginScreen,
               child: Text("Вход", style: TextStyle(color: Theme.of(context).primaryColor),),
               style: ButtonStyleWhite(),
             ),
@@ -56,13 +56,15 @@ class LaunchScreenState extends State<LaunchScreen> {
     ],
   );
 
+  void pushLoginScreen() {
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (BuildContext buildContext) => LoginScreen())
+    );
+  }
+
   void pushRegistrationScreen() {
       Navigator.of(context).push(
         MaterialPageRoute(builder: (BuildContext buildContext) => RegistrationScreen())
       );
-  }
-
-  void pushLoginScreen() {
-
   }
 }
