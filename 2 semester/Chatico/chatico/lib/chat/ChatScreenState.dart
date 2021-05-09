@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'ChatMessage.dart';
 import 'ChatScreen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
 
-  final List<ChatMessage> _messages = [];
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
@@ -15,11 +15,23 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
         body: Column(
           children: [
             Flexible(
-                child: ListView.builder(
-                  padding: EdgeInsets.all(8.0),
-                  reverse: true,
-                  itemBuilder: (_, int index) => _messages[index],
-                  itemCount: _messages.length,
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance.collection("main_room").snapshots(),
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+
+                    if(!snapshot.hasData) return Text("loading...");
+
+                    return ListView.builder(
+                      padding: EdgeInsets.all(8.0),
+                      reverse: true,
+                      itemBuilder: (_, int index) {
+
+                        DocumentSnapshot doc = snapshot.data.docs[index];
+                        return ChatMessage(author: doc['author'], text: doc['text']);
+                      },
+                      itemCount: snapshot.data.docs.length,
+                    );
+                  }
                 )
             ),
             Divider(height: 1.0),
@@ -67,28 +79,21 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
   void _handleSubmitted(String text) {
     _textController.clear();
 
-    ChatMessage newMsg = ChatMessage(
-        text: text,
-        animController: AnimationController(
-          duration: const Duration(milliseconds: 300),
-          vsync: this
-        ),
-    );
+    // ChatMessage newMsg = _buildChatMsg(text);
 
-    setState(() {
-      _messages.insert(0, newMsg);
-    });
+    // setState(() {
+    //   _messages.insert(0, newMsg);
+    // });
 
     _focusNode.requestFocus();
-    newMsg.animController.forward();
   }
 
   @override
   void dispose() {
 
-    for(var msg in _messages) {
-      msg.animController.dispose();
-    }
+    // for(var msg in _messages) {
+    //   msg.animController.dispose();
+    // }
 
     super.dispose();
   }
