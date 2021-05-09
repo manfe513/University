@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:chatico/widget/TextFieldLogin.dart';
-import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 import 'style/ButtonWhiteStyle.dart';

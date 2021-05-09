@@ -6,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
 
+  final _author = "Andew";
+
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
@@ -16,7 +18,10 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
           children: [
             Flexible(
                 child: StreamBuilder(
-                  stream: FirebaseFirestore.instance.collection("main_room").snapshots(),
+                  stream: FirebaseFirestore.instance
+                      .collection("main_room")
+                      .orderBy("date", descending: true)
+                      .snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
 
                     if(!snapshot.hasData) return Text("loading...");
@@ -27,7 +32,11 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
                       itemBuilder: (_, int index) {
 
                         DocumentSnapshot doc = snapshot.data.docs[index];
-                        return ChatMessage(author: doc['author'], text: doc['text']);
+                        return ChatMessage(
+                            date: doc['date'].toDate(),
+                            author: doc['author'],
+                            text: doc['text']
+                        );
                       },
                       itemCount: snapshot.data.docs.length,
                     );
@@ -84,6 +93,12 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
     // setState(() {
     //   _messages.insert(0, newMsg);
     // });
+
+    FirebaseFirestore.instance.collection("main_room").add({
+      "date": DateTime.now(),
+      "author": _author,
+      "text": text
+    });
 
     _focusNode.requestFocus();
   }

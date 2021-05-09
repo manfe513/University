@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatMessage extends StatelessWidget {
 
   ChatMessage({
+    this.date,
     this.author,
     this.text});
 
+  final DateTime date;
   final String author;
   final String text;
 
@@ -27,6 +30,10 @@ class ChatMessage extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(top: 5.0),
                   child: Text(text),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 3.0),
+                  child: Text(DateFormat.yMd().add_Hms().format(date)),
                 ),
               ],
             ),
