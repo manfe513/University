@@ -18,6 +18,7 @@ class ChatMessage extends StatelessWidget {
       sizeFactor: CurvedAnimation(parent: animController, curve: Curves.easeOut),
       axisAlignment: 0.0,
       child: Container(
+        padding: EdgeInsets.symmetric(vertical: 5),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -28,7 +29,7 @@ class ChatMessage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(_name, style: Theme.of(context).textTheme.headline4),
+                Text(_name, style: Theme.of(context).textTheme.subtitle1),
                 Container(
                   margin: EdgeInsets.only(top: 5.0),
                   child: Text(text),
