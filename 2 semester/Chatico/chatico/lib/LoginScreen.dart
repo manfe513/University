@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:chatico/chat/ChatScreen.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
@@ -72,12 +73,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   void checkLogin() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext buildContext) {
-      return Scaffold(
-        appBar: AppBar(title: Text("Saved list")),
-        // body: ListView(children: dividedTiles),
-      );
-    }));
+        .push(MaterialPageRoute(builder: (BuildContext buildContext) =>
+        ChatScreen()
+    ));
   }
 
   void pushLoginScreen() {}
