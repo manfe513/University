@@ -70,7 +70,7 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
     ChatMessage newMsg = ChatMessage(
         text: text,
         animController: AnimationController(
-          duration: const Duration(milliseconds: 700),
+          duration: const Duration(milliseconds: 300),
           vsync: this
         ),
     );
