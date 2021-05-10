@@ -1,4 +1,4 @@
-import 'package:chatico/LaunchScreen.dart';
+import 'package:chatico/launch/LaunchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 

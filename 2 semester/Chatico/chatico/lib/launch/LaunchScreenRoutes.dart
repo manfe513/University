@@ -1,29 +1,17 @@
 import 'dart:ui';
-
-import 'package:chatico/LoginScreen.dart';
+import 'package:chatico/style/ButtonWhiteStyle.dart';
 import 'package:flutter/material.dart';
 
-import 'RegistrationScreen.dart';
-import 'style/ButtonWhiteStyle.dart';
-
-class LaunchScreen extends StatefulWidget {
-  const LaunchScreen({Key key}) : super(key: key);
+class LaunchRoutes extends StatefulWidget {
+  const LaunchRoutes({Key key}) : super(key: key);
 
   @override
-  LaunchScreenState createState() => LaunchScreenState();
+  LaunchRoutesState createState() => LaunchRoutesState();
 }
 
-class LaunchScreenState extends State<LaunchScreen> {
-
+class LaunchRoutesState extends State<LaunchRoutes> {
   @override
-  Widget build(BuildContext context) => Scaffold(
-    body: Container(
-      color: Theme.of(context).primaryColor,
-      child: buildRoutesWidget()
-    )
-  );
-
-  Widget buildRoutesWidget() => Row(
+  Widget build(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Column(
@@ -36,12 +24,15 @@ class LaunchScreenState extends State<LaunchScreen> {
               style: TextStyle(color: Colors.white, fontSize: 36),
             ),
           ),
-          SizedBox(
-            width: 200,
-            child: ElevatedButton(
-              onPressed: pushLoginScreen,
-              child: Text("Вход", style: TextStyle(color: Theme.of(context).primaryColor),),
-              style: ButtonStyleWhite(),
+          Padding(
+            padding: EdgeInsets.only(bottom: 10),
+            child: SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                onPressed: pushLoginScreen,
+                child: Text("Вход", style: TextStyle(color: Theme.of(context).primaryColor),),
+                style: ButtonStyleWhite(),
+              ),
             ),
           ),
           SizedBox(
@@ -63,8 +54,8 @@ class LaunchScreenState extends State<LaunchScreen> {
   }
 
   void pushRegistrationScreen() {
-      Navigator.of(context).push(
+    Navigator.of(context).push(
         MaterialPageRoute(builder: (BuildContext buildContext) => RegistrationScreen())
-      );
+    );
   }
 }
