@@ -4,9 +4,12 @@ import 'package:chatico/helper/DialogHelper.dart';
 import 'package:chatico/chat/ChatScreen.dart';
 import 'package:chatico/helper/EmailValidator.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Const.dart';
 import 'style/ButtonWhiteStyle.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -93,6 +96,18 @@ class LoginScreenState extends State<LoginScreen> {
           email: email,
           password: pass
       );
+
+      final userSnap = await FirebaseFirestore.instance.collection("users")
+          .doc(FirebaseAuth.instance.currentUser.uid)
+      .get();
+
+      final userName = userSnap.data()['name'];
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(Const.KEY_USERNAME, userName);
+
+      showChat();
+
     } on FirebaseAuthException catch (e) {
 
       if (e.code == 'user-not-found') {

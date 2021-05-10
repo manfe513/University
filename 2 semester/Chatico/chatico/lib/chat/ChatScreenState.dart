@@ -1,3 +1,5 @@
+import 'package:chatico/launch/LaunchScreen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,7 +15,16 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(title: Text("Chatico: chat")),
+        appBar: AppBar(
+            title: Text("Chatico: chat"),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.logout),
+              tooltip: 'Выход',
+              onPressed: () { logout(); },
+            )
+          ],
+        ),
         body: Column(
           children: [
             Flexible(
@@ -106,6 +117,16 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
     });
 
     _focusNode.requestFocus();
+  }
+
+  Future<void> logout() async {
+    await FirebaseAuth.instance.signOut();
+
+    final prefs = await SharedPreferences.getInstance();
+    prefs.clear();
+
+    Route route = MaterialPageRoute(builder: (context) => LaunchScreen());
+    Navigator.pushReplacement(context, route);
   }
 
   @override

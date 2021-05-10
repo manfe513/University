@@ -5,6 +5,7 @@ import 'package:chatico/helper/DialogHelper.dart';
 import 'package:chatico/chat/ChatScreen.dart';
 import 'package:chatico/helper/EmailValidator.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -119,6 +120,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
 
       final prefs = await SharedPreferences.getInstance();
       prefs.setString(Const.KEY_USERNAME, name);
+
+      FirebaseFirestore.instance.collection("users")
+          .doc(FirebaseAuth.instance.currentUser.uid)
+      .set({
+        "name": name
+      });
 
       showChat();
 
