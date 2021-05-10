@@ -43,11 +43,11 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Логин", loginController)
+                  child: TextFieldLogin("Логин", loginController, false)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Пароль", passController)
+                  child: TextFieldLogin("Пароль", passController, true)
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

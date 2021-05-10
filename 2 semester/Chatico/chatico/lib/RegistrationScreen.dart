@@ -48,19 +48,19 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Email", emailController)
+                  child: TextFieldLogin("Email", emailController, false)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Имя", nameController)
+                  child: TextFieldLogin("Имя", nameController, false)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Пароль", passController)
+                  child: TextFieldLogin("Пароль", passController, true)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Повторите пароль", confirmPassController)
+                  child: TextFieldLogin("Повторите пароль", confirmPassController, true)
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -118,6 +118,8 @@ class RegistrationScreenState extends State<RegistrationScreen> {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString(Const.KEY_USERNAME, name);
 
+      showChat();
+
     } on FirebaseAuthException catch (e) {
 
       if (e.code == 'weak-password') {
@@ -145,7 +147,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
           content: Text(text),
           actions: [
             TextButton(
-              onPressed: () {},
+              onPressed: () => Navigator.pop(context),
               child: Text("Ok"),
             )
           ],

@@ -8,8 +8,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
 
-  final _author = "Andew";
-
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
 
@@ -103,7 +101,7 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
 
     FirebaseFirestore.instance.collection("main_room").add({
       "date": DateTime.now(),
-      "author": _author,
+      "author": author,
       "text": text
     });
 

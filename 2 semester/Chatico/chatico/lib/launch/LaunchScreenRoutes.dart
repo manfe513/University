@@ -2,6 +2,9 @@ import 'dart:ui';
 import 'package:chatico/style/ButtonWhiteStyle.dart';
 import 'package:flutter/material.dart';
 
+import '../LoginScreen.dart';
+import '../RegistrationScreen.dart';
+
 class LaunchRoutes extends StatefulWidget {
   const LaunchRoutes({Key key}) : super(key: key);
 

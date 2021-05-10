@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class TextFieldLogin extends TextField {
   final String hint;
   final TextEditingController control;
+  final bool obscure;
 
-  TextFieldLogin(this.hint, this.control);
+  TextFieldLogin(this.hint, this.control, this.obscure);
 
   @override
-  // TODO: implement controller
   TextEditingController get controller => control;
 
   @override
@@ -15,6 +15,19 @@ class TextFieldLogin extends TextField {
 
   @override
   Color get cursorColor => Colors.white;
+
+  @override
+  bool get obscureText => obscure;
+
+  @override
+  // TODO: implement keyboardType
+  TextInputType get keyboardType => TextInputType.visiblePassword;
+
+  @override
+  bool get autocorrect => false;
+
+  @override
+  bool get autofocus => false;
 
   @override
   // TODO: implement decoration
