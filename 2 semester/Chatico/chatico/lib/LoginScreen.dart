@@ -1,7 +1,10 @@
 import 'dart:ui';
 
+import 'package:chatico/helper/DialogHelper.dart';
 import 'package:chatico/chat/ChatScreen.dart';
+import 'package:chatico/helper/EmailValidator.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'style/ButtonWhiteStyle.dart';
@@ -14,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final loginController = TextEditingController();
+  final emailController = TextEditingController();
   final passController = TextEditingController();
 
   @override
@@ -43,7 +46,7 @@ class LoginScreenState extends State<LoginScreen> {
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Логин", loginController, false)
+                  child: TextFieldLogin("Email", emailController, false)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
@@ -57,7 +60,7 @@ class LoginScreenState extends State<LoginScreen> {
                     child: SizedBox(
                       width: 100,
                       child: ElevatedButton(
-                        onPressed: checkLogin,
+                        onPressed: () { checkLogin(); },
                         child: Text("Войти", style: TextStyle(color: Theme.of(context).primaryColor),),
                         style: ButtonStyleWhite(),
                       ),
@@ -70,12 +73,42 @@ class LoginScreenState extends State<LoginScreen> {
         ],
       );
 
-  void checkLogin() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext buildContext) =>
-        ChatScreen()
-    ));
+  Future<void> checkLogin() async {
+
+    final email = emailController.text;
+    final pass = passController.text;
+
+    if(email.isEmpty || pass.isEmpty) {
+      showError("Заполните форму");
+      return;
+    }
+
+    if (!EmailValidator.isEmailValid(email)) {
+      showError("Некорректный почтовый адрес");
+      return;
+    }
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email,
+          password: pass
+      );
+    } on FirebaseAuthException catch (e) {
+
+      if (e.code == 'user-not-found') {
+        showError("Пользователь не найден");
+
+      } else if (e.code == 'wrong-password') {
+        showError("Неверный пароль");
+      }
+    }
   }
 
-  void pushLoginScreen() {}
+  void showError(String text) => DialogHelper.show(context, "Ошибка", text);
+
+  void showChat() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext buildContext) => ChatScreen()
+    ));
+  }
 }

@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:chatico/Const.dart';
+import 'package:chatico/helper/DialogHelper.dart';
 import 'package:chatico/chat/ChatScreen.dart';
+import 'package:chatico/helper/EmailValidator.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +96,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
       return;
     }
 
-    if (!isEmailValid(email)) {
+    if (!EmailValidator.isEmailValid(email)) {
       showError("Некорректный почтовый адрес");
       return;
     }
@@ -134,26 +136,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
-  bool isEmailValid(String email) {
-    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
-  }
-
-  void showError(String text) {
-
-    showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text("Ошибка"),
-          content: Text(text),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text("Ok"),
-            )
-          ],
-        )
-    );
-  }
+  void showError(String text) => DialogHelper.show(context, "Ошибка", text);
 
   void showChat() {
 
