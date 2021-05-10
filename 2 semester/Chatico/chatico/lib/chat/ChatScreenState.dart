@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Const.dart';
 import 'ChatMessage.dart';
 import 'ChatScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -86,13 +88,18 @@ class ChatScreenState extends State<ChatScreen>  with TickerProviderStateMixin {
   }
 
   void _handleSubmitted(String text) {
+    if(text.isEmpty) {
+      return;
+    }
+
+    sendMsg(text);
+  }
+
+  Future<void> sendMsg(String text) async {
+    final prefs = await SharedPreferences.getInstance();
+    final author = prefs.getString(Const.KEY_USERNAME);
+
     _textController.clear();
-
-    // ChatMessage newMsg = _buildChatMsg(text);
-
-    // setState(() {
-    //   _messages.insert(0, newMsg);
-    // });
 
     FirebaseFirestore.instance.collection("main_room").add({
       "date": DateTime.now(),

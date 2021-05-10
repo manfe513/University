@@ -1,3 +1,3 @@
 class Const {
-  static const KEY_LOGIN = "KEY_LOGIN";
+  static const KEY_USERNAME = "KEY_USERNAME";
 }

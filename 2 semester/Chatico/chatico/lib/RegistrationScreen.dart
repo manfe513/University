@@ -1,7 +1,11 @@
 import 'dart:ui';
 
+import 'package:chatico/Const.dart';
+import 'package:chatico/chat/ChatScreen.dart';
 import 'package:chatico/widget/TextFieldLogin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'style/ButtonWhiteStyle.dart';
 
@@ -13,7 +17,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class RegistrationScreenState extends State<RegistrationScreen> {
-  final loginController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
   final passController = TextEditingController();
   final confirmPassController = TextEditingController();
 
@@ -43,7 +48,11 @@ class RegistrationScreenState extends State<RegistrationScreen> {
               ),
               Padding(
                   padding: EdgeInsets.all(10),
-                  child: TextFieldLogin("Логин", loginController)
+                  child: TextFieldLogin("Email", emailController)
+              ),
+              Padding(
+                  padding: EdgeInsets.all(10),
+                  child: TextFieldLogin("Имя", nameController)
               ),
               Padding(
                   padding: EdgeInsets.all(10),
@@ -61,7 +70,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
                     child: SizedBox(
                       width: 200,
                       child: ElevatedButton(
-                        onPressed: checkLogin,
+                        onPressed: checkCredentialsForValidity,
                         child: Text("Зарегистрироваться", style: TextStyle(color: Theme.of(context).primaryColor),),
                         style: ButtonStyleWhite(),
                       ),
@@ -74,14 +83,84 @@ class RegistrationScreenState extends State<RegistrationScreen> {
         ],
       );
 
-  void checkLogin() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (BuildContext buildContext) {
-      return Scaffold(
-        appBar: AppBar(title: Text("Saved list")),
-        // body: ListView(children: dividedTiles),
+  void checkCredentialsForValidity() {
+    final email = emailController.text;
+    final pass = passController.text;
+    final confirmPass = confirmPassController.text;
+    final name = nameController.text;
+
+    if(email.isEmpty || pass.isEmpty || confirmPass.isEmpty || name.isEmpty) {
+      showError("Заполните форму");
+      return;
+    }
+
+    if (!isEmailValid(email)) {
+      showError("Некорректный почтовый адрес");
+      return;
+    }
+
+    if(pass != confirmPass) {
+      showError("Пароли не совпадают");
+      return;
+    }
+
+    performRegistration(email, name, pass);
+  }
+
+  Future<void> performRegistration(String email, String name, String pass) async {
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: email,
+          password: pass
       );
-    }));
+
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(Const.KEY_USERNAME, name);
+
+    } on FirebaseAuthException catch (e) {
+
+      if (e.code == 'weak-password') {
+        showError("Пароль слишком простой");
+
+      } else if (e.code == 'email-already-in-use') {
+        showError("Почтовый адрес уже зарегистрирован");
+      }
+
+    } catch (e) {
+      showError("Неизвестная ошибка: ${e.toString()}");
+    }
+  }
+
+  bool isEmailValid(String email) {
+    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(email);
+  }
+
+  void showError(String text) {
+
+    showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text("Ошибка"),
+          content: Text(text),
+          actions: [
+            TextButton(
+              onPressed: () {},
+              child: Text("Ok"),
+            )
+          ],
+        )
+    );
+  }
+
+  void showChat() {
+
+    Navigator.of(context)
+        .push(
+          MaterialPageRoute(
+            builder: (BuildContext buildContext) => ChatScreen()
+          )
+    );
   }
 
   void pushLoginScreen() {}

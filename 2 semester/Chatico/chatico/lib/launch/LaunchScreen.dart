@@ -32,7 +32,7 @@ class LaunchScreenState extends State<LaunchScreen> {
           } else if (snap.hasData) {
 
             final SharedPreferences prefs = snap.data;
-            final login = prefs.getString(Const.KEY_LOGIN);
+            final login = prefs.getString(Const.KEY_USERNAME);
 
             if(login != null) return ChatScreen();
             else return LaunchRoutes();
