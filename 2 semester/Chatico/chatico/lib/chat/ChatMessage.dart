@@ -33,7 +33,7 @@ class ChatMessage extends StatelessWidget {
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 3.0),
-                  child: Text(DateFormat.yMd().add_Hms().format(date)),
+                  child: Text(DateFormat.yMd().add_Hms().format(date), style: TextStyle(color: Colors.grey, fontSize: 11),),
                 ),
               ],
             ),
