@@ -1,38 +1,44 @@
 package com.manfe.encryption;
 
+import com.manfe.encryption.helper.AlertHelper;
+import com.manfe.encryption.helper.FileHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
+import java.io.File;
+
 public class EncryptController {
 
     @FXML
-    private TextField inputEncryptionKey;
+    private TextField etEncryptionKey;
 
     @FXML
-    private Button btnChooseFile;
+    private TextField etFilePath;
+
+    private File selectedFile = null;
 
     @FXML
     private void onBtnChooseFileClick() {
 
-        final FileChooser fileChooser = new FileChooser();
+        File file = FileHelper.getFile(etFilePath.getScene().getWindow());
 
-        fileChooser.setInitialDirectory(new java.io.File("C:\\\\"));
-        fileChooser.setTitle("Pick file");
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(
-                        "jpg, png, bmp, gif",
-                        "*.jpg", "*.png", "*.bmp", "*.gif"
-                )
-        );
-
-        fileChooser.showOpenDialog(btnChooseFile.getScene().getWindow());
+        if(file != null) {
+            selectedFile = file;
+            etFilePath.setText(selectedFile.getPath());
+        }
     }
 
     @FXML
-    private void onBtnExitClick() {
-        System.exit(0);
+    private void onBtnEncryptClick() {
+
+        if(selectedFile == null) {
+            AlertHelper.showInfo("Pick file first");
+            return;
+        }
+
+        AlertHelper.showInfo("go encrypt..");
     }
 }
