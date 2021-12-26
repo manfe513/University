@@ -1,6 +1,7 @@
 package com.manfe.encryption;
 
 import com.manfe.encryption.helper.AlertHelper;
+import com.manfe.encryption.helper.CryptoHelper;
 import com.manfe.encryption.helper.FileHelper;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,6 +40,27 @@ public class EncryptController {
             return;
         }
 
-        AlertHelper.showInfo("go encrypt..");
+        if(etEncryptionKey.getText().isBlank()) {
+            AlertHelper.showInfo("Enter encryption key");
+            return;
+        }
+
+        String destinationFilePath = selectedFile.getParentFile().getAbsolutePath()
+                + File.separator
+                + "ENCRYPTED_"
+                + selectedFile.getName();
+
+        try {
+            CryptoHelper.encrypt(
+                    etEncryptionKey.getText(),
+                    selectedFile,
+                    new File(destinationFilePath)
+            );
+
+            AlertHelper.showInfo("File encrypted, path:\n" + destinationFilePath);
+
+        } catch (Exception e) {
+            AlertHelper.showInfo(e.getLocalizedMessage());
+        }
     }
 }
