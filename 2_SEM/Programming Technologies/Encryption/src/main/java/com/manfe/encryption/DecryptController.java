@@ -60,7 +60,7 @@ public class DecryptController {
             AlertHelper.showInfo("File decrypted, path:\n" + destinationFilePath);
 
         } catch (Exception e) {
-            AlertHelper.showInfo(e.getLocalizedMessage());
+            AlertHelper.showError(e.getLocalizedMessage());
         }
     }
 }

@@ -15,8 +15,8 @@ public class FileHelper {
         fileChooser.setTitle("Pick file");
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter(
-                        "TXT, PDF",
-                        "*.txt", "*.pdf"
+                        "*",
+                        "*.*"
                 )
         );
 

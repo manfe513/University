@@ -14,6 +14,7 @@ public class CryptoHelper {
 
     private static final String ALGORITHM = "PBKDF2WithHmacSHA256";
     private static final String TRANSFORMATION = "AES";
+    private static final String SECRET_SALT = "SECRET_SALT";
 
     public static void encrypt(String key,
                                File inputFile,
@@ -35,7 +36,7 @@ public class CryptoHelper {
                                  File outputFile) throws Exception {
 
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(ALGORITHM);
-        KeySpec spec = new PBEKeySpec(key.toCharArray(), "salt".getBytes(), 65536, 256);
+        KeySpec spec = new PBEKeySpec(key.toCharArray(), SECRET_SALT.getBytes(), 65536, 256);
         SecretKey secretKey = new SecretKeySpec(keyFactory.generateSecret(spec).getEncoded(), "AES");
 
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);

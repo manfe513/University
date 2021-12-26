@@ -57,7 +57,7 @@ public class EncryptController {
             AlertHelper.showInfo("File encrypted, path:\n" + destinationFilePath);
 
         } catch (Exception e) {
-            AlertHelper.showInfo(e.getLocalizedMessage());
+            AlertHelper.showError(e.getLocalizedMessage());
         }
     }
 }

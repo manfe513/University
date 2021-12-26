@@ -1,21 +1,9 @@
 package com.manfe.encryption;
 
+import com.manfe.encryption.helper.AlertHelper;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 public class MenuController {
-
-    @FXML
-    private Label welcomeText;
-
-    @FXML
-    private Button btnChooseFile;
-
-    @FXML
-    private void onBtnChooseFileClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 
     @FXML
     private void onBtnExitClick() {
@@ -24,6 +12,6 @@ public class MenuController {
 
     @FXML
     private void onBtnAboutClick() {
-        //todo
+        AlertHelper.showInfo("Program created by Andrew Vasilev\nRIV-200027y\n2021");
     }
 }
