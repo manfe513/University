@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.manfe.encryption.DecryptController">
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          hgap="10"
+          vgap="10"
+          fx:controller="com.manfe.encryption.DecryptController">
+
+    <padding>
+        <Insets top="10" bottom="10" right="10" left="10"/>
+    </padding>
+
+    <Label text="Key word:"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="0"/>
+
+    <TextField
+            fx:id="etKey"
+            maxWidth="400"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="0"/>
+
+    <Label text="File:"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="1"/>
+
+    <TextField
+            fx:id="etFilePath"
+            maxWidth="200"
+            GridPane.columnIndex="1"
+            disable="true"
+            GridPane.rowIndex="1"/>
 
     <Button
-            fx:id="btnChooseFile"
-            text="Choose file" onAction="#onBtnChooseFileClick"/>
-</VBox>
+            text="Choose file"
+            onAction="#onBtnChooseFileClick"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="1" />
+
+    <Button
+            text="Decrypt"
+            onAction="#onBtnDecryptClick"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="2" />
+</GridPane>

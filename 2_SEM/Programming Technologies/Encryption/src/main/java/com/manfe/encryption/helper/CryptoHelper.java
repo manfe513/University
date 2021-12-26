@@ -8,7 +8,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.security.Key;
 import java.security.spec.KeySpec;
 
 public class CryptoHelper {
@@ -39,7 +38,6 @@ public class CryptoHelper {
         KeySpec spec = new PBEKeySpec(key.toCharArray(), "salt".getBytes(), 65536, 256);
         SecretKey secretKey = new SecretKeySpec(keyFactory.generateSecret(spec).getEncoded(), "AES");
 
-//                Key secretKey = new SecretKeySpec(key.getBytes(), ALGORITHM);
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
         cipher.init(cipherMode, secretKey);
 

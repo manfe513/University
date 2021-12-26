@@ -20,7 +20,7 @@
            GridPane.rowIndex="0"/>
 
     <TextField
-            fx:id="etEncryptionKey"
+            fx:id="etKey"
             maxWidth="400"
             GridPane.columnIndex="1"
             GridPane.rowIndex="0"/>

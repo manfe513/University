@@ -4,17 +4,14 @@ import com.manfe.encryption.helper.AlertHelper;
 import com.manfe.encryption.helper.CryptoHelper;
 import com.manfe.encryption.helper.FileHelper;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.FileChooser;
 
 import java.io.File;
 
 public class EncryptController {
 
     @FXML
-    private TextField etEncryptionKey;
+    private TextField etKey;
 
     @FXML
     private TextField etFilePath;
@@ -40,7 +37,7 @@ public class EncryptController {
             return;
         }
 
-        if(etEncryptionKey.getText().isBlank()) {
+        if(etKey.getText().isBlank()) {
             AlertHelper.showInfo("Enter encryption key");
             return;
         }
@@ -52,7 +49,7 @@ public class EncryptController {
 
         try {
             CryptoHelper.encrypt(
-                    etEncryptionKey.getText(),
+                    etKey.getText(),
                     selectedFile,
                     new File(destinationFilePath)
             );
