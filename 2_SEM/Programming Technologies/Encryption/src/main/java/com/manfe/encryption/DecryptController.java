@@ -48,7 +48,7 @@ public class DecryptController {
         String destinationFilePath = selectedFile.getParentFile().getAbsolutePath()
                 + File.separator
                 + "DECRYPTED_"
-                + selectedFile.getName();
+                + selectedFile.getName().replace("ENCRYPTED_", "");
 
         try {
             CryptoHelper.decrypt(
