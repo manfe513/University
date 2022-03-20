@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class NormalAlgorithm {
 
-    private static String IN = "EbaabE";
+    private static String IN = "EbababE";
 
     private static class Replacement {
 
