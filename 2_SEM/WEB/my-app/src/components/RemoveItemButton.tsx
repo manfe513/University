@@ -1,3 +1,4 @@
+import { Popconfirm } from "antd"
 import Button, { ButtonProps } from "antd/lib/button"
 import React from "react"
 import { useDeteltItemMutation } from "../network/apiHooks"
@@ -10,9 +11,22 @@ export const RemoveTodoButton: React.FC<
 
     const deleteMutation = useDeteltItemMutation()
 
-    return <Button 
-    onClick={ () => deleteMutation.mutateAsync(itemId) }
-    loading={deleteMutation.isLoading}
-        {...props}
-    >Удалить</Button>
+    
+    const onConfirmDeletion = () => {
+        deleteMutation.mutateAsync(itemId)
+    }
+
+    return <Popconfirm
+        title="Удалить?"
+        onConfirm={onConfirmDeletion}
+        okText="Да"
+        cancelText="Нет">
+
+        <Button 
+            loading={deleteMutation.isLoading}
+            {...props}
+        >Удалить</Button>
+
+    </Popconfirm>
+
 })

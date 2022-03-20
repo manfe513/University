@@ -19,7 +19,7 @@ export const ListItem: React.FC<{
         <List.Item.Meta
             avatar={
                 <Checkbox 
-                disabled={saveItemMutation.isLoading}
+                    disabled={saveItemMutation.isLoading}
                     checked={item.completed} 
                     onChange={e => {
                         saveItemMutation.mutateAsync({
@@ -29,10 +29,17 @@ export const ListItem: React.FC<{
                     }} 
                 />
             }
-            title={ <Typography.Text disabled={item.completed}>{item.title}</Typography.Text> }
+            title={ 
+                <Typography.Text 
+                    disabled={item.completed}
+                    delete={item.completed}
+                >
+                    {item.title}
+                </Typography.Text> 
+            }
         />
 
         <RemoveTodoButton itemId={item.id}>Удалить</RemoveTodoButton>
-
+        
     </List.Item>
 })
