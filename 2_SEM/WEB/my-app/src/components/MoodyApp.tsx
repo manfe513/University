@@ -3,6 +3,7 @@ import Button from "antd/lib/button";
 import React from "react";
 import { useItemsQuery } from "../network/apiHooks";
 import { AddMoodyButton } from "./AddMoodyButton";
+import { Counter } from "./Counter";
 import { MoodyList } from "./MoodyList";
 
 export const MoodyApp: React.FC = React.memo(() => {
@@ -16,6 +17,7 @@ export const MoodyApp: React.FC = React.memo(() => {
     return <Space direction="vertical" style={{width: '100%' }}>
 
         <AddMoodyButton />
+        <Counter />
 
         <MoodyList/>
 

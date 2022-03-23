@@ -13,6 +13,11 @@
     {
       "title": "3",
       "id": 6
+    },
+    {
+      "title": "4",
+      "id": 7,
+      "completed": true
     }
   ]
 }
