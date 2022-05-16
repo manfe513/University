@@ -61,6 +61,12 @@ build CMakeFiles/lab_2.dir/5.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/U
   OBJECT_DIR = CMakeFiles\lab_2.dir
   OBJECT_FILE_DIR = CMakeFiles\lab_2.dir
 
+build CMakeFiles/lab_2.dir/6-stroka.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/University/c++/lab/6-stroka.cpp || cmake_object_order_depends_target_lab_2
+  DEP_FILE = CMakeFiles\lab_2.dir\6-stroka.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target lab_2
@@ -69,7 +75,7 @@ build CMakeFiles/lab_2.dir/5.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/U
 #############################################
 # Link the executable lab_2.exe
 
-build lab_2.exe: CXX_EXECUTABLE_LINKER__lab_2_Debug CMakeFiles/lab_2.dir/2.cpp.obj CMakeFiles/lab_2.dir/5.cpp.obj
+build lab_2.exe: CXX_EXECUTABLE_LINKER__lab_2_Debug CMakeFiles/lab_2.dir/2.cpp.obj CMakeFiles/lab_2.dir/5.cpp.obj CMakeFiles/lab_2.dir/6-stroka.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab_2.dir
@@ -180,17 +186,6 @@ build lab_5.exe: CXX_EXECUTABLE_LINKER__lab_5_Debug CMakeFiles/lab_5.dir/5.cpp.o
 
 
 #############################################
-# Utility command for edit_cache
-
-build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Zver\University\c++\lab\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
-  DESC = No interactive CMake dialog available...
-  restat = 1
-
-build edit_cache: phony CMakeFiles/edit_cache.util
-
-
-#############################################
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
@@ -200,6 +195,56 @@ build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
   restat = 1
 
 build rebuild_cache: phony CMakeFiles/rebuild_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_6
+
+
+#############################################
+# Order-only phony target for lab_6
+
+build cmake_object_order_depends_target_lab_6: phony || CMakeFiles/lab_6.dir
+
+build CMakeFiles/lab_6.dir/6.cpp.obj: CXX_COMPILER__lab_6_Debug C$:/Users/Zver/University/c++/lab/6.cpp || cmake_object_order_depends_target_lab_6
+  DEP_FILE = CMakeFiles\lab_6.dir\6.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_6.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_6.dir
+
+build CMakeFiles/lab_6.dir/6-stroka.cpp.obj: CXX_COMPILER__lab_6_Debug C$:/Users/Zver/University/c++/lab/6-stroka.cpp || cmake_object_order_depends_target_lab_6
+  DEP_FILE = CMakeFiles\lab_6.dir\6-stroka.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_6.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_6.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_6
+
+
+#############################################
+# Link the executable lab_6.exe
+
+build lab_6.exe: CXX_EXECUTABLE_LINKER__lab_6_Debug CMakeFiles/lab_6.dir/6.cpp.obj CMakeFiles/lab_6.dir/6-stroka.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_6.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_6.exe
+  TARGET_IMPLIB = liblab_6.dll.a
+  TARGET_PDB = lab_6.exe.dbg
+
+
+#############################################
+# Utility command for edit_cache
+
+build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\Zver\University\c++\lab\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build edit_cache: phony CMakeFiles/edit_cache.util
 
 # =============================================================================
 # Target aliases.
@@ -212,6 +257,8 @@ build lab_4: phony lab_4.exe
 
 build lab_5: phony lab_5.exe
 
+build lab_6: phony lab_6.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -220,7 +267,7 @@ build lab_5: phony lab_5.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe
 
 # =============================================================================
 # Built-in targets
