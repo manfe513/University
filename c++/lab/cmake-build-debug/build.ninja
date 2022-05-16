@@ -49,8 +49,14 @@ cmake_ninja_workdir = C$:/Users/Zver/University/c++/lab/cmake-build-debug/
 
 build cmake_object_order_depends_target_lab_2: phony || CMakeFiles/lab_2.dir
 
-build CMakeFiles/lab_2.dir/main2.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/University/c++/lab/main2.cpp || cmake_object_order_depends_target_lab_2
-  DEP_FILE = CMakeFiles\lab_2.dir\main2.cpp.obj.d
+build CMakeFiles/lab_2.dir/2.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/University/c++/lab/2.cpp || cmake_object_order_depends_target_lab_2
+  DEP_FILE = CMakeFiles\lab_2.dir\2.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_2.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_2.dir
+
+build CMakeFiles/lab_2.dir/5.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zver/University/c++/lab/5.cpp || cmake_object_order_depends_target_lab_2
+  DEP_FILE = CMakeFiles\lab_2.dir\5.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\lab_2.dir
   OBJECT_FILE_DIR = CMakeFiles\lab_2.dir
@@ -63,7 +69,7 @@ build CMakeFiles/lab_2.dir/main2.cpp.obj: CXX_COMPILER__lab_2_Debug C$:/Users/Zv
 #############################################
 # Link the executable lab_2.exe
 
-build lab_2.exe: CXX_EXECUTABLE_LINKER__lab_2_Debug CMakeFiles/lab_2.dir/main2.cpp.obj
+build lab_2.exe: CXX_EXECUTABLE_LINKER__lab_2_Debug CMakeFiles/lab_2.dir/2.cpp.obj CMakeFiles/lab_2.dir/5.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab_2.dir
@@ -82,8 +88,8 @@ build lab_2.exe: CXX_EXECUTABLE_LINKER__lab_2_Debug CMakeFiles/lab_2.dir/main2.c
 
 build cmake_object_order_depends_target_lab_3: phony || CMakeFiles/lab_3.dir
 
-build CMakeFiles/lab_3.dir/main3.cpp.obj: CXX_COMPILER__lab_3_Debug C$:/Users/Zver/University/c++/lab/main3.cpp || cmake_object_order_depends_target_lab_3
-  DEP_FILE = CMakeFiles\lab_3.dir\main3.cpp.obj.d
+build CMakeFiles/lab_3.dir/3.cpp.obj: CXX_COMPILER__lab_3_Debug C$:/Users/Zver/University/c++/lab/3.cpp || cmake_object_order_depends_target_lab_3
+  DEP_FILE = CMakeFiles\lab_3.dir\3.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\lab_3.dir
   OBJECT_FILE_DIR = CMakeFiles\lab_3.dir
@@ -96,7 +102,7 @@ build CMakeFiles/lab_3.dir/main3.cpp.obj: CXX_COMPILER__lab_3_Debug C$:/Users/Zv
 #############################################
 # Link the executable lab_3.exe
 
-build lab_3.exe: CXX_EXECUTABLE_LINKER__lab_3_Debug CMakeFiles/lab_3.dir/main3.cpp.obj
+build lab_3.exe: CXX_EXECUTABLE_LINKER__lab_3_Debug CMakeFiles/lab_3.dir/3.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\lab_3.dir
@@ -105,6 +111,72 @@ build lab_3.exe: CXX_EXECUTABLE_LINKER__lab_3_Debug CMakeFiles/lab_3.dir/main3.c
   TARGET_FILE = lab_3.exe
   TARGET_IMPLIB = liblab_3.dll.a
   TARGET_PDB = lab_3.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_4
+
+
+#############################################
+# Order-only phony target for lab_4
+
+build cmake_object_order_depends_target_lab_4: phony || CMakeFiles/lab_4.dir
+
+build CMakeFiles/lab_4.dir/4.cpp.obj: CXX_COMPILER__lab_4_Debug C$:/Users/Zver/University/c++/lab/4.cpp || cmake_object_order_depends_target_lab_4
+  DEP_FILE = CMakeFiles\lab_4.dir\4.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_4.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_4.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_4
+
+
+#############################################
+# Link the executable lab_4.exe
+
+build lab_4.exe: CXX_EXECUTABLE_LINKER__lab_4_Debug CMakeFiles/lab_4.dir/4.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_4.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_4.exe
+  TARGET_IMPLIB = liblab_4.dll.a
+  TARGET_PDB = lab_4.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_5
+
+
+#############################################
+# Order-only phony target for lab_5
+
+build cmake_object_order_depends_target_lab_5: phony || CMakeFiles/lab_5.dir
+
+build CMakeFiles/lab_5.dir/5.cpp.obj: CXX_COMPILER__lab_5_Debug C$:/Users/Zver/University/c++/lab/5.cpp || cmake_object_order_depends_target_lab_5
+  DEP_FILE = CMakeFiles\lab_5.dir\5.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_5.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_5.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_5
+
+
+#############################################
+# Link the executable lab_5.exe
+
+build lab_5.exe: CXX_EXECUTABLE_LINKER__lab_5_Debug CMakeFiles/lab_5.dir/5.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_5.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_5.exe
+  TARGET_IMPLIB = liblab_5.dll.a
+  TARGET_PDB = lab_5.exe.dbg
 
 
 #############################################
@@ -136,6 +208,10 @@ build lab_2: phony lab_2.exe
 
 build lab_3: phony lab_3.exe
 
+build lab_4: phony lab_4.exe
+
+build lab_5: phony lab_5.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -144,7 +220,7 @@ build lab_3: phony lab_3.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe
 
 # =============================================================================
 # Built-in targets
