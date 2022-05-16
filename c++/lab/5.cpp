@@ -1,13 +1,10 @@
-#include <string.h>
+#include <cstring>
 #include <iostream>
-#include <stdio.h>
-
-void search(FILE *in);
+#include <cstdio>
 
 using namespace std;
 
-// 2. visible / invisible
-void visibleInvisible(FILE *in) {
+void visibleInvisible_2(FILE *in) {
     char ch;
     int visible=0, invisible=0;
 
@@ -18,7 +15,7 @@ void visibleInvisible(FILE *in) {
     }
     cout << "Visible chars count = " << visible << ", invisible chars count = " << invisible << endl;
 }
-// 3. search_3
+
 void search_3(FILE *in, char *s) {
 
     char buff[1024] = {0};
@@ -75,21 +72,70 @@ void replacePages_4() {
     }
 }
 
+void encodeDecode_5_6(FILE *in) {
+    FILE *outEncoded, *inEncoded, *outDecoded;
+    if((outEncoded = fopen("5-56-output-encoded.txt", "w"))==NULL) {
+        printf("5-56-output-encoded.txt file not opened");
+        return;
+    }
+
+    if((outDecoded = fopen("5-56-output-decoded.txt", "w"))==NULL) {
+        printf("5-56-output-decoded.txt file not opened");
+        return;
+    }
+
+    char *key;
+    printf("Enter encryption key: ");
+    scanf("%s", key);
+
+    int keyIndex;
+    int i=0;
+    char ch;
+
+    while(!feof(in)) {
+        ch = getc(in);
+        keyIndex = i> sizeof(key) ? i % sizeof(key) : i;
+        char encryptedChar = ch^key[keyIndex];
+
+        putc(encryptedChar, outEncoded);
+
+        i++;
+    }
+
+    // start decoding process
+    if((inEncoded = fopen("5-56-output-encoded.txt", "r"))==NULL) {
+        printf("5-56-output-encoded.txt file not opened");
+        return;
+    }
+
+    i=0;
+    while(!feof(inEncoded)) {
+        ch = getc(inEncoded);
+        keyIndex = i> sizeof(key) ? i % sizeof(key) : i;
+        char decryptedChar = ch&key[keyIndex];
+
+        putc(decryptedChar, outDecoded);
+
+        i++;
+    }
+}
+
 int main() {
-    char name [50] = "5-3-input.txt";
+    char name [50];
     FILE *in;
 
-//    printf("Enter file name: ");
-//    scanf("%s", name);
+    printf("Enter file name: ");
+    scanf("%s", name);
 
     if((in= fopen(name, "r"))==NULL) printf("File %s not opened", name);
     else {
-        // 2.
-//        visibleInvisible(in);
+        visibleInvisible_2(in);
 
-//        search_3(in, "banana");
+        search_3(in, "banana");
 
         replacePages_4();
+
+        encodeDecode_5_6(in);
     }
 
     return 0;
