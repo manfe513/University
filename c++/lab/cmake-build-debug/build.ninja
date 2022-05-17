@@ -235,6 +235,39 @@ build lab_6.exe: CXX_EXECUTABLE_LINKER__lab_6_Debug CMakeFiles/lab_6.dir/6.cpp.o
   TARGET_IMPLIB = liblab_6.dll.a
   TARGET_PDB = lab_6.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_7
+
+
+#############################################
+# Order-only phony target for lab_7
+
+build cmake_object_order_depends_target_lab_7: phony || CMakeFiles/lab_7.dir
+
+build CMakeFiles/lab_7.dir/7.cpp.obj: CXX_COMPILER__lab_7_Debug C$:/Users/Zver/University/c++/lab/7.cpp || cmake_object_order_depends_target_lab_7
+  DEP_FILE = CMakeFiles\lab_7.dir\7.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_7.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_7.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_7
+
+
+#############################################
+# Link the executable lab_7.exe
+
+build lab_7.exe: CXX_EXECUTABLE_LINKER__lab_7_Debug CMakeFiles/lab_7.dir/7.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_7.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_7.exe
+  TARGET_IMPLIB = liblab_7.dll.a
+  TARGET_PDB = lab_7.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -259,6 +292,8 @@ build lab_5: phony lab_5.exe
 
 build lab_6: phony lab_6.exe
 
+build lab_7: phony lab_7.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -267,7 +302,7 @@ build lab_6: phony lab_6.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe
 
 # =============================================================================
 # Built-in targets

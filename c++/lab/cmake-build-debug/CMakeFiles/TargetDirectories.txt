@@ -4,4 +4,5 @@ C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_4.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_5.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/rebuild_cache.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_6.dir
+C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_7.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/edit_cache.dir
