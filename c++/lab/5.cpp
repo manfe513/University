@@ -129,13 +129,13 @@ int main() {
 
     if((in= fopen(name, "r"))==NULL) printf("File %s not opened", name);
     else {
-        visibleInvisible_2(in);
+//        visibleInvisible_2(in);
 
-        search_3(in, "banana");
+//        search_3(in, "banana");
 
         replacePages_4();
 
-        encodeDecode_5_6(in);
+//        encodeDecode_5_6(in);
     }
 
     return 0;

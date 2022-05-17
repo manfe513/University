@@ -5,75 +5,75 @@
 using namespace std;
 
 // private
-int Stroka::dlina(char *s1) {
-    int i= 0;
-    while(*s1++ != '\0') i++;
+static int dlina(char *s1) {
+    int i = 0;
+    while (*s1++ != '\0') i++;
     return i;
 }
 
-void Stroka::copy(char* s1, char* s2){
+static void copy(char *s1, char *s2) {
 
     int len = (strlen(s1) > strlen(s2)) ? strlen(s1) : strlen(s2);
 
-    for(int i = 0; i <= len; i++){
+    for (int i = 0; i <= len; i++) {
         s1[i] = s2[i];
     }
 }
 
-int Stroka::compare(char *str1, char *str2) {
+static int compare(char *str1, char *str2) {
     int maxLength = min(dlina(str1), dlina(str2));
-    for(int i=0; i<maxLength; i++) {
-        if(str1[i] != str2[i]) return -1;
+    for (int i = 0; i < maxLength; i++) {
+        if (str1[i] != str2[i]) return -1;
     }
 
     return 0;
 }
 
-void Stroka::concat(char *str1, char *str2) {
+static void concat(char *str1, char *str2) {
     int size1 = dlina(str1);
     char *r = new char[size1 + dlina(str2)];
 
-    int i=0;
-    for(; i< size1; i++)
+    int i = 0;
+    for (; i < size1; i++)
         r[i] = str1[i];
 
-    int j=0;
-    while(str2[j] != '\0')  r[i++] = str2[j++];
+    int j = 0;
+    while (str2[j] != '\0') r[i++] = str2[j++];
 
     copy(str1, r);
 }
 
 //public
 Stroka::Stroka(char *s) {
-    char *newStr = new char[strlen(s)];
+    char *newStr = new char[::dlina(s)];
     str = newStr;
     copy(str, s);
 }
 
 Stroka::Stroka(const Stroka &s) {
-    char *newStr = new char[strlen(s.str)];
+    char *newStr = new char[::dlina(s.str)];
     str = newStr;
     copy(str, s.str);
 }
 
-Stroka& Stroka::operator=(const Stroka &s) {
-    char *newStr = new char[strlen(s.str)];
+Stroka &Stroka::operator=(const Stroka &s) {
+    char *newStr = new char[::dlina(s.str)];
     str = newStr;
     copy(str, s.str);
     return *this;
 }
 
-Stroka& Stroka::operator+(const Stroka &s) {
+Stroka &Stroka::operator+(const Stroka &s) {
     concat(str, s.str);
     return *this;
 }
 
 int Stroka::operator==(const Stroka &s) {
-    return compare(str, (char*) s.str) == 0;
+    return compare(str, (char *) s.str) == 0;
 }
 
 int Stroka::dlina() {
-    return dlina(str);
+    return ::dlina(str);
 }
 
 void Stroka::vvod() {
@@ -83,4 +83,18 @@ void Stroka::vvod() {
 
 void Stroka::vyvod() {
     cout << "str is: " << str << endl;
+}
+
+// >> Дополнение для ЛР №8
+istream &operator>>(istream &is, Stroka &s) {
+    char buff[1024];
+    cin >> buff;
+    s.str = new char[strlen(buff)];
+    copy(s.str, buff);
+    return is;
+}
+
+ostream &operator<< (ostream &os, Stroka &s) {
+    cout << s.str;
+    return os;
 }
