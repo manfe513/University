@@ -184,18 +184,6 @@ build lab_5.exe: CXX_EXECUTABLE_LINKER__lab_5_Debug CMakeFiles/lab_5.dir/5.cpp.o
   TARGET_IMPLIB = liblab_5.dll.a
   TARGET_PDB = lab_5.exe.dbg
 
-
-#############################################
-# Utility command for rebuild_cache
-
-build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\Zver\University\c++\lab\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\Zver\University\c++\lab -BC:\Users\Zver\University\c++\lab\cmake-build-debug"
-  DESC = Running CMake to regenerate build system...
-  pool = console
-  restat = 1
-
-build rebuild_cache: phony CMakeFiles/rebuild_cache.util
-
 # =============================================================================
 # Object build statements for EXECUTABLE target lab_6
 
@@ -268,6 +256,39 @@ build lab_7.exe: CXX_EXECUTABLE_LINKER__lab_7_Debug CMakeFiles/lab_7.dir/7.cpp.o
   TARGET_IMPLIB = liblab_7.dll.a
   TARGET_PDB = lab_7.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_8
+
+
+#############################################
+# Order-only phony target for lab_8
+
+build cmake_object_order_depends_target_lab_8: phony || CMakeFiles/lab_8.dir
+
+build CMakeFiles/lab_8.dir/8.cpp.obj: CXX_COMPILER__lab_8_Debug C$:/Users/Zver/University/c++/lab/8.cpp || cmake_object_order_depends_target_lab_8
+  DEP_FILE = CMakeFiles\lab_8.dir\8.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_8.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_8.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_8
+
+
+#############################################
+# Link the executable lab_8.exe
+
+build lab_8.exe: CXX_EXECUTABLE_LINKER__lab_8_Debug CMakeFiles/lab_8.dir/8.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_8.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_8.exe
+  TARGET_IMPLIB = liblab_8.dll.a
+  TARGET_PDB = lab_8.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -278,6 +299,18 @@ build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
   restat = 1
 
 build edit_cache: phony CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D C:\Users\Zver\University\c++\lab\cmake-build-debug && "C:\Program Files\JetBrains\CLion 2021.3.4\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -SC:\Users\Zver\University\c++\lab -BC:\Users\Zver\University\c++\lab\cmake-build-debug"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 # =============================================================================
 # Target aliases.
@@ -294,6 +327,8 @@ build lab_6: phony lab_6.exe
 
 build lab_7: phony lab_7.exe
 
+build lab_8: phony lab_8.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -302,7 +337,7 @@ build lab_7: phony lab_7.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe lab_8.exe
 
 # =============================================================================
 # Built-in targets
