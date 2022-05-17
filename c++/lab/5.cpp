@@ -1,6 +1,7 @@
 #include <cstring>
 #include <iostream>
 #include <cstdio>
+#include <fstream>
 
 using namespace std;
 
@@ -41,33 +42,37 @@ void search_3(FILE *in, char *s) {
     }
 }
 
+// >>
+// >> Метод переписан с использованием классов-потоков для ЛР №8
+// >>
 void replacePages_4() {
 
     char buff[1024] = {0};
     char *line;
-    FILE *in, *out;
 
-    if((in = fopen("5-4-input.txt", "r"))==NULL) {
+    ifstream ifs("5-4-input.txt");
+    if (!ifs) {
         printf("5-4-input.txt file not opened");
         return;
     }
 
-    if((out = fopen("5-4-output.txt", "w"))==NULL) {
+    ofstream ofs("5-4-output.txt");
+    if(!ofs) {
         printf("5-4-output.txt file not opened");
         return;
     }
 
     char *pageNumStr = new char[1024];
-    while((line = fgets(buff, 1024,in))) {
+    while (ifs && ofs) {
+        ifs.getline(line, 1024);
 
         if (strstr(line, "-") != nullptr) {
             strcpy(pageNumStr, line);
         } else {
 
             if(strstr(line, "\f") != nullptr) {
-                fputs(pageNumStr, out);
-                fputs(line, out);
-            } else fputs(line, out);
+                ofs << pageNumStr << endl << "\f" << endl;
+            } else ofs << line << endl;
         }
     }
 }
