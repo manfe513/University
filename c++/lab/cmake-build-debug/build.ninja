@@ -322,6 +322,39 @@ build lab_9.exe: CXX_EXECUTABLE_LINKER__lab_9_Debug CMakeFiles/lab_9.dir/9.cpp.o
   TARGET_IMPLIB = liblab_9.dll.a
   TARGET_PDB = lab_9.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target lab_10
+
+
+#############################################
+# Order-only phony target for lab_10
+
+build cmake_object_order_depends_target_lab_10: phony || CMakeFiles/lab_10.dir
+
+build CMakeFiles/lab_10.dir/10.cpp.obj: CXX_COMPILER__lab_10_Debug C$:/Users/Zver/University/c++/lab/10.cpp || cmake_object_order_depends_target_lab_10
+  DEP_FILE = CMakeFiles\lab_10.dir\10.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\lab_10.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab_10.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab_10
+
+
+#############################################
+# Link the executable lab_10.exe
+
+build lab_10.exe: CXX_EXECUTABLE_LINKER__lab_10_Debug CMakeFiles/lab_10.dir/10.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab_10.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab_10.exe
+  TARGET_IMPLIB = liblab_10.dll.a
+  TARGET_PDB = lab_10.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -348,6 +381,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build lab_10: phony lab_10.exe
+
 build lab_2: phony lab_2.exe
 
 build lab_3: phony lab_3.exe
@@ -372,7 +407,7 @@ build lab_9: phony lab_9.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe lab_8.exe lab_9.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe lab_8.exe lab_9.exe lab_10.exe
 
 # =============================================================================
 # Built-in targets
