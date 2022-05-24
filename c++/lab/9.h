@@ -21,6 +21,10 @@ public:
     }
     void push(T t);
     T pop();
+    T peek();
+    bool isEmpty() {
+        return numItem<=0;
+    }
 };
 
 template <class T>
@@ -33,6 +37,12 @@ template <class T>
 T Tstack <T>::pop()
 {
     return item[--numItem];
+}
+
+template <class T>
+T Tstack <T>::peek()
+{
+    return item[numItem-1];
 }
 
 #endif //LAB_2_9_H
