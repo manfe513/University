@@ -4,6 +4,7 @@ C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_4.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_5.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_6.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_7.dir
+C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/CourseProj.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_8.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_9.dir
 C:/Users/Zver/University/c++/lab/cmake-build-debug/CMakeFiles/lab_10.dir

@@ -257,6 +257,39 @@ build lab_7.exe: CXX_EXECUTABLE_LINKER__lab_7_Debug CMakeFiles/lab_7.dir/7.cpp.o
   TARGET_PDB = lab_7.exe.dbg
 
 # =============================================================================
+# Object build statements for EXECUTABLE target CourseProj
+
+
+#############################################
+# Order-only phony target for CourseProj
+
+build cmake_object_order_depends_target_CourseProj: phony || CMakeFiles/CourseProj.dir
+
+build CMakeFiles/CourseProj.dir/CourseProj.cpp.obj: CXX_COMPILER__CourseProj_Debug C$:/Users/Zver/University/c++/lab/CourseProj.cpp || cmake_object_order_depends_target_CourseProj
+  DEP_FILE = CMakeFiles\CourseProj.dir\CourseProj.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\CourseProj.dir
+  OBJECT_FILE_DIR = CMakeFiles\CourseProj.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target CourseProj
+
+
+#############################################
+# Link the executable CourseProj.exe
+
+build CourseProj.exe: CXX_EXECUTABLE_LINKER__CourseProj_Debug CMakeFiles/CourseProj.dir/CourseProj.cpp.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\CourseProj.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = CourseProj.exe
+  TARGET_IMPLIB = libCourseProj.dll.a
+  TARGET_PDB = CourseProj.exe.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target lab_8
 
 
@@ -381,6 +414,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build CourseProj: phony CourseProj.exe
+
 build lab_10: phony lab_10.exe
 
 build lab_2: phony lab_2.exe
@@ -407,7 +442,7 @@ build lab_9: phony lab_9.exe
 #############################################
 # Folder: C:/Users/Zver/University/c++/lab/cmake-build-debug
 
-build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe lab_8.exe lab_9.exe lab_10.exe
+build all: phony lab_2.exe lab_3.exe lab_4.exe lab_5.exe lab_6.exe lab_7.exe CourseProj.exe lab_8.exe lab_9.exe lab_10.exe
 
 # =============================================================================
 # Built-in targets
