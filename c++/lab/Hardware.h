@@ -7,13 +7,14 @@
 #include "iptypes.h"
 #include "iphlpapi.h"
 #include "dxgi.h"
-#include "iostream"
-
-
-
 #include <iphlpapi.h>
+
+
+#include "iostream"
 #include <stdio.h>
 #include <stdlib.h>
+#include <wbemcli.h>
+
 #pragma comment(lib, "IPHLPAPI.lib")
 
 #define MALLOC(x) HeapAlloc(GetProcessHeap(), 0, (x))
@@ -35,9 +36,10 @@ void getScreenSize(int& x, int& y)
     y = desktop.bottom;
 }
 
-void printScreenSize() {
+void showScreenSize() {
     int x = 0, y = 0; // screen size
     getScreenSize(x, y);
+    cout << "=== SCREEN SIZE ===" << endl;
     cout << "Screen size is: x = " << x << ", y = " << y;
 }
 
@@ -48,26 +50,33 @@ void makeBeep() {
 void showSystemInfo() {
     SYSTEM_INFO siSysInfo;
 
-    // Copy the hardware information to the SYSTEM_INFO structure.
-
     GetSystemInfo(&siSysInfo);
 
-    // Display the contents of the SYSTEM_INFO structure.
-
-    printf("Hardware information: \n");
-    printf("  Number of processors: %u\n",
-           siSysInfo.dwNumberOfProcessors);
+    cout << "=== SYSTEM INFO ===" << endl;
+    printf("  Number of processors: %u\n", siSysInfo.dwNumberOfProcessors);
     printf("  Page size: %u\n", siSysInfo.dwPageSize);
     printf("  Processor type: %u\n", siSysInfo.dwProcessorType);
-    printf("  Minimum application address: %lx\n",
-           siSysInfo.lpMinimumApplicationAddress);
-    printf("  Maximum application address: %lx\n",
-           siSysInfo.lpMaximumApplicationAddress);
+    printf("  Minimum application address: %lx\n", siSysInfo.lpMinimumApplicationAddress);
+    printf("  Maximum application address: %lx\n", siSysInfo.lpMaximumApplicationAddress);
 }
 
-void showNetworkAdapterInfo() {
-
+static float bytesToGb(DWORDLONG bytes) {
+    return (float) (bytes / (float) 1024 / 1024 / 1024);
 }
 
+void showRamInfo() {
+    MEMORYSTATUSEX memInfo;
+    memInfo.dwLength = sizeof(MEMORYSTATUSEX);
+    GlobalMemoryStatusEx(&memInfo);
+
+    cout << "=== RAM INFO ===" << endl;
+    printf("  Total virtual memory: %f Gb\n", bytesToGb(memInfo.ullTotalPageFile)); // bytes -> Gigabytes
+    printf("  Total physical memory: %f Gb\n", bytesToGb(memInfo.ullTotalPhys));
+    printf("  Total physical memory used: %f Gb\n", bytesToGb(memInfo.ullTotalPhys - memInfo.ullAvailPhys));
+}
+
+void asd() {
+
+}
 
 #endif //LAB_2_HARDWARE_H

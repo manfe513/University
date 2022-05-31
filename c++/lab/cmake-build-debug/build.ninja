@@ -281,7 +281,7 @@ build CMakeFiles/CourseProj.dir/CourseProj.cpp.obj: CXX_COMPILER__CourseProj_Deb
 
 build CourseProj.exe: CXX_EXECUTABLE_LINKER__CourseProj_Debug CMakeFiles/CourseProj.dir/CourseProj.cpp.obj
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -liphlpapi  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CourseProj.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

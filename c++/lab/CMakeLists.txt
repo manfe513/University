@@ -12,4 +12,6 @@ add_executable(lab_7 7.cpp)
 add_executable(lab_8 8.cpp)
 add_executable(lab_9 9.cpp 9.h)
 add_executable(lab_10 10.cpp 10-linked-list.h)
-add_executable(CourseProj CourseProj.cpp Hardware.h)
+add_executable(CourseProj CourseProj.cpp Hardware.h NetworkInterfaces.h)
+
+target_link_libraries(CourseProj iphlpapi)
