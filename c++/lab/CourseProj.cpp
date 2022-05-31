@@ -8,12 +8,12 @@ int main() {
 
     int n;
     while (true) {
-        cout << "Choose option:" << endl;
+        cout << "\nChoose option:" << endl;
         cout << "1. Show screen size" << endl;
         cout << "2. Make Beep" << endl;
         cout << "3. Show system info" << endl;
         cout << "4. Show RAM info" << endl;
-        cout << "5. " << endl;
+        cout << "5. Show network adapters info" << endl;
         cout << "6. Exit" << endl << endl;
 
         cin >> n;
