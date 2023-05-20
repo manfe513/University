@@ -20,233 +20,139 @@
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <style>
-        a{
-            color: white;
-        }
-        a:hover{
-            color: white;
-            text-decoration: none;
-        }
 
-		body {
-			/*background: #717370;*/
-
-		}
-
-		#content {
-			/*border: 1px solid rgba(0, 83, 249, 0.5);*/
-			padding: 0.8em 1em;
-			/*max-width: 98vw;*/
-			max-height: 80vh;
-			/*max-width: 100%;*/
-			padding-bottom: 744px;
-			position: relative;
-			background: var(--content-background);
-			color: var(--font-color);
-		}
-
-		th{
-			color: var(--font-color);
-		}
-
-		td{
-			color: var(--font-color);
-		}
-
-		p {
-			font-size: 80%;
-		}
-
-
-		#content strong {
-			box-shadow: var(--Bshadow-box-shadow);
-			padding: 0.8em 1em;
-		}
-
-		:root {
-			--content-background: #ffffff;
-			--font-color: #000000;
-			--Bshadow-box-shadow: 0rem 0rem 0.3rem rgba(97, 97, 97, 0.41);
-		}
-
-		[data-theme="dark"] {
-			--content-background: #363636;
-			--font-color: #ecefef;
-			--Bshadow-box-shadow: 0rem 0rem 0.3rem rgba(201, 201, 201, 0.41);
-			--font-color: #fff;
-			--font-color: #fff;
-
-		}
-
-		/* переключатель темы  start */
-		.toggle-box:after {
-			content: "\25cf "" \2601";
-		}
-		.toggle-box:before {
-			content: "\263c "" \25cb";
-		}
-		.toggle-box {
-			display: inline-block;
-			position: relative;
-			margin: 1em;
-		}
-		.toggle-box input {
-			display: none;
-		}
-		.toggle-box label {
-			display: inline-block;
-			position: relative;
-			padding: 0;
-			font-size: 14px;
-			line-height: 16px;
-			cursor: pointer;
-			color: hsla(0, 0%, 58.4%, 0.51);
-		}
-		.toggle-box input[type="checkbox"]:checked + .toggle-box-label-left {
-			color: hsla(0, 0%, 58.4%, 0.51);
-		}
-		.toggle-box input[type="checkbox"] + .toggle-box-label-left {
-			color: hsla(0, 0%, 98%, 0.51);
-		}
-		.toggle-box input[type="checkbox"]:checked + .toggle-box-label-left:before {
-			right: 17px;
-			box-shadow: 5px 5px 0 0 #eee;
-			background: transparent;
-		}
-		.toggle-box-label-left:before {
-			content: "";
-			display: block;
-			position: absolute;
-			z-index: 1;
-			line-height: 34px;
-			text-indent: 40px;
-			height: 16px;
-			width: 16px;
-			margin: 4px;
-			border-radius: 100%;
-			right: 26px;
-			bottom: 0;
-			background: #383838;
-			-webkit-transform: rotate(-45deg);
-			transform: rotate(-45deg);
-		}
-		.toggle-box-label-left:after,
-		.toggle-box-label-left:before {
-			box-sizing: border-box;
-			padding: 0;
-			-webkit-transition: 0.25s ease-in-out;
-			transition: 0.25s ease-in-out;
-			outline: none;
-		}
-		.toggle-box input[type="checkbox"]:checked + .toggle-box-label-left:after {
-			background: rgba(0, 0, 0, 0.15);
-			border: 2px solid #ddd;
-		}
-		.toggle-box-label-left:after {
-			content: "";
-			display: inline-block;
-			width: 40px;
-			height: 24px;
-			border-radius: 16px;
-			background: hsla(0, 0%, 100%, 0.15);
-			vertical-align: middle;
-			margin: 0 10px;
-			border: 2px solid #383838;
-		}
-		.toggle-box-label-left:after,
-		.toggle-box-label-left:before {
-			box-sizing: border-box;
-			padding: 0;
-			-webkit-transition: 0.25s ease-in-out;
-			transition: 0.25s ease-in-out;
-			outline: none;
-		}
-		/*  переключатель темы   end*/
-
-	</style>
-	<link rel="stylesheet" href="../src/webapp/WEB_INF/jsp/css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body >
 
-<section id="content">
+<header class="p-3 text-bg-dark">
+	<div class="container-xxl">
+		<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+			<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+				<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+			</a>
 
-    <div class="container">
+			<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+				<li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+				<li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+				<li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+				<li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+				<li><a href="#" class="nav-link px-2 text-white">About</a></li>
+			</ul>
 
-        <h1 class="p-3">Курсы лекарств</h1>
-        <div>
+			<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+				<input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">
+			</form>
 
-			<c:if test="${empty user}">
-				   <button type="button" class="btn btn-outline-primary">
-					   <a href="/auth" style="color: black; font-weight: bold">Авторизация</a>
-				   </button>
-			</c:if>
-			<c:if test="${not empty user}">
-				<jsp:useBean id="user" scope="request" type="com.example.drugs.model.User"/>
-				<div>Пользователь: ${user.fullName}</div>
-			</c:if>
+			<div class="text-end">
+				<button type="button" class="btn btn-outline-light me-2">Login</button>
+				<button type="button" class="btn btn-warning">Sign-up</button>
+			</div>
+		</div>
+	</div>
+</header>
 
-<%--            <c:choose>--%>
-<%--               <c:when test="${empty user}">--%>
+<%--<section id="content">--%>
+
+<%--    <div class="container">--%>
+<%--		<header class="p-3 text-bg-dark">--%>
+<%--			<div class="container" >--%>
+<%--				<div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">--%>
+<%--					<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">--%>
+<%--						<svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>--%>
+<%--					</a>--%>
+
+<%--					<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">--%>
+<%--						<li><a href="#" class="nav-link px-2 text-secondary">Главная</a></li>--%>
+<%--						<li><a href="#" class="nav-link px-2 text-white">Справка</a></li>--%>
+<%--					</ul>--%>
+
+<%--					<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">--%>
+<%--						<input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search">--%>
+<%--					</form>--%>
+
+<%--					<div class="text-end">--%>
+<%--						<button type="button" class="btn btn-outline-light me-2">Login</button>--%>
+<%--						<button type="button" class="btn btn-warning">Sign-up</button>--%>
+<%--					</div>--%>
+<%--				</div>--%>
+<%--			</div>--%>
+<%--		</header>--%>
+
+<%--        <h1 class="p-3">Курсы лекарств</h1>--%>
+<%--        <div>--%>
+
+<%--			<c:if test="${empty user}">--%>
 <%--				   <button type="button" class="btn btn-outline-primary">--%>
 <%--					   <a href="/auth" style="color: black; font-weight: bold">Авторизация</a>--%>
 <%--				   </button>--%>
-<%--			   </c:when> <!-- if condition -->--%>
-<%--               <c:otherwise>Вы вошли, как </c:otherwise>    <!-- else condition -->--%>
-<%--            </c:choose>--%>
-        </div>
+<%--			</c:if>--%>
+<%--			<c:if test="${not empty user}">--%>
+<%--				<jsp:useBean id="user" scope="request" type="com.example.drugs.model.User"/>--%>
+<%--				<div>Пользователь: ${user.fullName}</div>--%>
+<%--			</c:if>--%>
 
-		<div class="toggle-box">
-		    <input type="checkbox" name="checkbox1" id="toggle-box-checkbox">
-		    <label for="toggle-box-checkbox" class="toggle-box-label-left"></label>
-		    <label for="toggle-box-checkbox" class="toggle-box-label"></label>
-		</div>
+<%--&lt;%&ndash;            <c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;               <c:when test="${empty user}">&ndash;%&gt;--%>
+<%--&lt;%&ndash;				   <button type="button" class="btn btn-outline-primary">&ndash;%&gt;--%>
+<%--&lt;%&ndash;					   <a href="/auth" style="color: black; font-weight: bold">Авторизация</a>&ndash;%&gt;--%>
+<%--&lt;%&ndash;				   </button>&ndash;%&gt;--%>
+<%--&lt;%&ndash;			   </c:when> <!-- if condition -->&ndash;%&gt;--%>
+<%--&lt;%&ndash;               <c:otherwise>Вы вошли, как </c:otherwise>    <!-- else condition -->&ndash;%&gt;--%>
+<%--&lt;%&ndash;            </c:choose>&ndash;%&gt;--%>
+<%--        </div>--%>
 
-        <form:form>
+<%--		<div class="toggle-box">--%>
+<%--		    <input type="checkbox" name="checkbox1" id="toggle-box-checkbox">--%>
+<%--		    <label for="toggle-box-checkbox" class="toggle-box-label-left"></label>--%>
+<%--		    <label for="toggle-box-checkbox" class="toggle-box-label"></label>--%>
+<%--		</div>--%>
 
-            <table class="table table-bordered">
-            	<tr>
-<%--            		<th>Id</th>--%>
-            		<th>Название</th>
-            		<th>Год</th>
-            		<th>Редактировать</th>
-            		<th>Удалить</th>
-					<th>Где посмотреть</th>
-					<th>Отзыв</th>
-            	</tr>
+<%--        <form:form>--%>
 
-            	<c:forEach var="anime" items="${animeList}">
-<%--
-<%--                		<td>${anime.id}</td>--%>
-                		<td style="font-weight: bold">${anime.name}</td>
-                		<td style="font-weight: bold">${anime.year}</td>
-                		<td><button type="button" class="btn btn-success">
-                		    <a href="/editAnime/${anime.id} " style="color: black; font-weight: bold">Редактировать</a>
-                		</button></td>
-                		<td><button type="button" class="btn btn-danger">
-                			<a href="/deleteAnime/${anime.id}" style="color: black; font-weight: bold">Удалить</a>
-                		</button></td>
-						<td><button type="button" class="btn btn-warning">
-							<a href="https://yummyanime.org" target="_blank" style="color: black; font-weight: bold">Посмотреть на сайте</a>
-						</button></td>
-						<td><button type="button" class="btn btn-primary ">
-							<a href="/reviewAnime/" style="color: black; font-weight: bold">Оставить отзыв</a>
-						</button></td>
-                	</tr>
+<%--            <table class="table table-bordered">--%>
+<%--            	<tr>--%>
+<%--&lt;%&ndash;            		<th>Id</th>&ndash;%&gt;--%>
+<%--            		<th>Название</th>--%>
+<%--            		<th>Год</th>--%>
+<%--            		<th>Редактировать</th>--%>
+<%--            		<th>Удалить</th>--%>
+<%--					<th>Где посмотреть</th>--%>
+<%--					<th>Отзыв</th>--%>
+<%--            	</tr>--%>
 
-            	</c:forEach>
+<%--            	<c:forEach var="anime" items="${animeList}">--%>
+<%--&lt;%&ndash;--%>
+<%--&lt;%&ndash;                		<td>${anime.id}</td>&ndash;%&gt;--%>
+<%--                		<td style="font-weight: bold">${anime.name}</td>--%>
+<%--                		<td style="font-weight: bold">${anime.year}</td>--%>
+<%--                		<td><button type="button" class="btn btn-success">--%>
+<%--                		    <a href="/editAnime/${anime.id} " style="color: black; font-weight: bold">Редактировать</a>--%>
+<%--                		</button></td>--%>
+<%--                		<td><button type="button" class="btn btn-danger">--%>
+<%--                			<a href="/deleteAnime/${anime.id}" style="color: black; font-weight: bold">Удалить</a>--%>
+<%--                		</button></td>--%>
+<%--						<td><button type="button" class="btn btn-warning">--%>
+<%--							<a href="https://yummyanime.org" target="_blank" style="color: black; font-weight: bold">Посмотреть на сайте</a>--%>
+<%--						</button></td>--%>
+<%--						<td><button type="button" class="btn btn-primary ">--%>
+<%--							<a href="/reviewAnime/" style="color: black; font-weight: bold">Оставить отзыв</a>--%>
+<%--						</button></td>--%>
+<%--                	</tr>--%>
 
-            </table>
+<%--            	</c:forEach>--%>
 
-        </form:form>
+<%--            </table>--%>
 
-        <button type="button" class="btn btn-info btn-block">
-        	<a href="/addAnime" style="color: black; font-weight: bold">Добавить новое Аниме</a>
-        </button>
+<%--        </form:form>--%>
 
-    </div>
-</section>
+<%--        <button type="button" class="btn btn-info btn-block">--%>
+<%--        	<a href="/addAnime" style="color: black; font-weight: bold">Добавить новое Аниме</a>--%>
+<%--        </button>--%>
+
+<%--    </div>--%>
+<%--</section>--%>
 
     <script th:inline="javascript">
                 window.onload = function() {
