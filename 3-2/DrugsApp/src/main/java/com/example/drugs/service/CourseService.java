@@ -21,8 +21,8 @@ public class CourseService {
         return repo.findAll();
     }
 
-    public boolean saveOrUpdate(Course user) {
-        Course updated = repo.save(user);
+    public boolean saveOrUpdate(Course item) {
+        Course updated = repo.save(item);
 
         return repo.findById(updated.getId()).isPresent();
     }

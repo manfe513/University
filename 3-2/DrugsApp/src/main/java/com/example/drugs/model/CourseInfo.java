@@ -1,5 +1,7 @@
 package com.example.drugs.model;
 
+import java.util.Date;
+
 public class CourseInfo {
 
     private Course course;
@@ -9,6 +11,9 @@ public class CourseInfo {
     private DrugType drugType;
 
     private UseType useType;
+
+    private Date dateStart;
+    private Date dateEnd;
 
     public CourseInfo() {}
 
@@ -38,5 +43,13 @@ public class CourseInfo {
 
     public UseType getUseType() {
         return useType;
+    }
+
+    public Date getDateStart() {
+        return dateStart;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
     }
 }

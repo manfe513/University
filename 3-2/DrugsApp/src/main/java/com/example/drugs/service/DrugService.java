@@ -20,4 +20,10 @@ public class DrugService {
     public Drug getById(Long id) {
         return repo.findById(id).get();
     }
+
+    public boolean saveOrUpdate(Drug item) {
+        Drug updated = repo.save(item);
+
+        return repo.findById(updated.getId()).isPresent();
+    }
 }
