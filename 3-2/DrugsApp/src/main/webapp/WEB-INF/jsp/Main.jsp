@@ -23,20 +23,20 @@
                     <th>Препарат</th>
                     <th>Способ приёма</th>
                     <th>Время приёма</th>
-                    <th>Удалить</th>
                     <th>Начало курса</th>
                     <th>Окончание курса</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
                 </tr>
 
                 <tr>
 <%--                    <jsp:useBean id="courseInfos" scope="session" type="java.util.ArrayList<com.example.drugs.model.CourseInfo>"/>--%>
                     <c:forEach var="courseInfo" items="${courseInfos}">
                     <td>${courseInfo.drug.name}</td>
-                    <td>${courseInfo.drug.name}</td>
-                    <td>${courseInfo.drug.name}</td>
-                    <td>${courseInfo.drug.name}</td>
-                    <td>${courseInfo.drug.name}</td>
-                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.useType.name}</td>
+                    <td>${courseInfo.course.time}</td>
+                    <td>${courseInfo.course.date_start}</td>
+                    <td>${courseInfo.course.date_end}</td>
                     <td>
                         <button type="button" class="btn btn-success">
                             <a href="/editCourse/${courseInfo.course.id} " style="color: black; font-weight: bold">Редактировать</a>

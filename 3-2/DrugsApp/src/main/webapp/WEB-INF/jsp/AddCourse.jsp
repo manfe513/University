@@ -43,6 +43,16 @@
 
             <div class="row">
             	<div class="form-group col-md-12">
+            		<label class="col-md-3" for="time">Время приёма</label>
+            		<div class="col-md-6">
+            		    <form:input type="text" path="time" id="time"
+            		        class="form-control input-sm" required="required" />
+            		</div>
+            	</div>
+            </div>
+
+            <div class="row">
+            	<div class="form-group col-md-12">
             		<label class="col-md-3" for="datepicker1">Дата начала</label>
             		<div class="col-md-6">
             		    <form:input type="text" path="dateStart" id="datepicker1"
@@ -61,16 +71,6 @@
             	</div>
             </div>
 
-<%--            <div class="row">--%>
-<%--            	<div class="form-group col-md-12">--%>
-<%--            		<label class="col-md-3" for="year">Год</label>--%>
-<%--            		<div class="col-md-6">--%>
-<%--            			<form:input type="number" path="year" id="year"--%>
-<%--            				class="form-control input-sm" required="required" />--%>
-<%--            		</div>--%>
-<%--            	</div>--%>
-<%--            </div>--%>
-
             <div class="row p-2">
             	<div class="col-md-2">
             		<button type="submit" value="Save" class="btn btn-success">Сохранить</button>
@@ -85,6 +85,17 @@
 		$(function() {
 			$("#datepicker1").datepicker();
 			$("#datepicker2").datepicker();
+			$("#time").timepicker({
+				timeFormat: 'h:mm p',
+				interval: 15,
+				minTime: '10',
+				maxTime: '6:00pm',
+				defaultTime: '11',
+				startTime: '10:00',
+				dynamic: false,
+				dropdown: true,
+				scrollbar: true
+			});
 		});
 	</script>
 

@@ -10,6 +10,8 @@ public class AddCourseModel {
     private Date dateStart;
     private Date dateEnd;
 
+    private String time;
+
     public AddCourseModel() {}
 
     public Long getDrugId() {
@@ -40,5 +42,13 @@ public class AddCourseModel {
 
     public void setDateEnd(Date dateEnd) {
         this.dateEnd = dateEnd;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

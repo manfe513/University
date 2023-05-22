@@ -40,14 +40,14 @@ public class CourseController {
     }
 
     @PostMapping("/saveCourse")
-    public String saveAnime(AddCourseModel addCourseModel, RedirectAttributes redirectAttributes) {
+    public String saveCourse(AddCourseModel addCourseModel, RedirectAttributes redirectAttributes) {
 
-        System.out.println("getDrugId = " + addCourseModel.getDrugId());
         Course course = new Course(
                 addCourseModel.getDrugId(),
                 addCourseModel.getUseTypeId(),
                 addCourseModel.getDateStart(),
-                addCourseModel.getDateEnd()
+                addCourseModel.getDateEnd(),
+                addCourseModel.getTime()
         );
 
         if (courseService.saveOrUpdate(course)) {
