@@ -14,6 +14,7 @@
     <h1 class="p-3">Изменить курс</h1>
 
     <form:form action="/editSaveCourse" method="post" modelAttribute="addCourseModel">
+        <form:input path="courseId" value="${addCourseModel.courseId}"/>
 
         <div class="row">
             <div class="form-group col-md-12">
