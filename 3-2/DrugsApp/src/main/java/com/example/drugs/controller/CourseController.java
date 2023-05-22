@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,7 +52,7 @@ public class CourseController {
         );
 
         if (courseService.saveOrUpdate(course)) {
-            redirectAttributes.addFlashAttribute("message", "Save Success");
+            redirectAttributes.addFlashAttribute("message", "save_success");
             return "redirect:/main";
         }
 
@@ -76,18 +77,18 @@ public class CourseController {
 //        redirectAttributes.addFlashAttribute("message", "Edit Failure");
 //        return "redirect:/editAnime/" + anime.getId();
 //    }
-//
-//    @GetMapping("/deleteAnime/{id}")
-//    public String deleteAnime(@PathVariable Long id, RedirectAttributes redirectAttributes) {
-//        if (userService.deleteAnime(id)) {
-//            redirectAttributes.addFlashAttribute("message", "Delete Success");
-//        } else {
-//            redirectAttributes.addFlashAttribute("message", "Delete Failure");
-//        }
-//
-//        return "redirect:/viewAnimeList";
-//    }
-//
+
+    @GetMapping("/deleteCourse/{id}")
+    public String deleteAnime(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        if (courseService.deleteById(id)) {
+            redirectAttributes.addFlashAttribute("message", "delete_success");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "delete_error");
+        }
+
+        return "redirect:/main";
+    }
+
 //    @GetMapping("/reviewAnime/{id}")
 //    public String reviewAnime(@PathVariable Long id, Model model) {
 //        model.addAttribute("anime", userService.getAnimeById(id));

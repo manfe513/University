@@ -26,4 +26,14 @@ public class CourseService {
 
         return repo.findById(updated.getId()).isPresent();
     }
+
+    public boolean deleteById(Long id) {
+        try {
+            repo.deleteById(id);
+        } catch (Exception e) {
+            // needless
+        }
+
+        return repo.findById(id).isEmpty();
+    }
 }

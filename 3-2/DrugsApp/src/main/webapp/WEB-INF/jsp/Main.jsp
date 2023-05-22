@@ -68,12 +68,15 @@
         const msg = "${message}";
         console.log(msg);
         if (msg === "save_success") {
-            toastr["success"]("Успешно добавлено!!")
-        } else if (msg == "delete_success") {
-            toastr["success"]("Успешно удалено!!")
-        } else if (msg == "delete_error") {
-            toastr["error"]("Ошибка!!!")
-        } else if (msg == "edit_success") {
+            toastr["success"]("Успешно добавлено")
+
+        } else if (msg === "delete_success") {
+            toastr["success"]("Успешно удалено")
+
+        } else if (msg === "delete_error") {
+            toastr["error"]("Ошибка удаления")
+
+        } else if (msg === "edit_success") {
             toastr["success"]("Успешно изменено!!")
         }
 
