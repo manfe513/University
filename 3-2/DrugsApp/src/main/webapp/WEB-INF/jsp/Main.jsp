@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-
+<html>
 <%@include file="../template/head.jsp" %>
 
 <body>
@@ -28,32 +28,26 @@
                     <th>Окончание курса</th>
                 </tr>
 
-                <jsp:useBean id="courses" scope="application" type="com.example.drugs.model.Course"/>
-                <c:forEach var="course" items="${courses}">
-                                    		<td style="font-weight: bold">${course.}</td>
-                    <%--                		<td style="font-weight: bold">${anime.year}</td>--%>
-<%--                    <td>--%>
-<%--                        <button type="button" class="btn btn-success">--%>
-<%--                            <a href="/editAnime/${anime.id} " style="color: black; font-weight: bold">Редактировать</a>--%>
-<%--                        </button>--%>
-<%--                    </td>--%>
-<%--                    <td>--%>
-<%--                        <button type="button" class="btn btn-danger">--%>
-<%--                            <a href="/deleteAnime/${anime.id}" style="color: black; font-weight: bold">Удалить</a>--%>
-<%--                        </button>--%>
-<%--                    </td>--%>
-<%--                    <td>--%>
-<%--                        <button type="button" class="btn btn-warning">--%>
-<%--                            <a href="https://yummyanime.org" target="_blank" style="color: black; font-weight: bold">Посмотреть--%>
-<%--                                на сайте</a>--%>
-<%--                        </button>--%>
-<%--                    </td>--%>
-<%--                    <td>--%>
-<%--                        <button type="button" class="btn btn-primary ">--%>
-<%--                            <a href="/reviewAnime/" style="color: black; font-weight: bold">Оставить отзыв</a>--%>
-<%--                        </button>--%>
-<%--                    </td>--%>
-                    </tr>
+                <tr>
+<%--                    <jsp:useBean id="courseInfos" scope="session" type="java.util.ArrayList<com.example.drugs.model.CourseInfo>"/>--%>
+                    <c:forEach var="courseInfo" items="${courseInfos}">
+                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.drug.name}</td>
+                    <td>${courseInfo.drug.name}</td>
+                    <td>
+                        <button type="button" class="btn btn-success">
+                            <a href="/editCourse/${courseInfo.course.id} " style="color: black; font-weight: bold">Редактировать</a>
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                            <a href="/deleteCourse/${courseInfo.course.id}" style="color: black; font-weight: bold">Удалить</a>
+                        </button>
+                    </td>
+                </tr>
 
                 </c:forEach>
 
@@ -62,7 +56,7 @@
         </form:form>
 
         <button type="button" class="btn btn-info btn-block">
-            <a href="/addAnime" style="color: black; font-weight: bold">Добавить новое Аниме</a>
+            <a href="/addCourse" style="color: black; font-weight: bold">Добавить новый курс</a>
         </button>
 
     </div>
