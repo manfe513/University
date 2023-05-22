@@ -11,7 +11,7 @@
 
     <div class="container">
 
-        <h1 class="p-3"> Добавить новое Аниме </h1>
+        <h1 class="p-3">Добавить курс</h1>
 
         <form:form action="/saveCourse" method="post" modelAttribute="addCourseModel">
 

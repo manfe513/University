@@ -60,50 +60,53 @@ public class CourseController {
         return "redirect:/addCourse";
     }
 
-//    @GetMapping("/editAnime/{id}")
-//    public String editAnime(@PathVariable Long id, Model model) {
-//        model.addAttribute("anime", userService.getAnimeById(id));
-//
-//        return "EditAnime";
-//    }
-//
-//    @PostMapping("/editSaveAnime")
-//    public String editSaveAnime(Anime anime, RedirectAttributes redirectAttributes) {
-//        if (userService.saveOrUpdateAnime(anime)) {
-//            redirectAttributes.addFlashAttribute("message", "Edit Success");
-//            return "redirect:/viewAnimeList";
-//        }
-//
-//        redirectAttributes.addFlashAttribute("message", "Edit Failure");
-//        return "redirect:/editAnime/" + anime.getId();
-//    }
+    @GetMapping("/editCourse/{id}")
+    public String editCourse(@PathVariable Long id, Model model) {
+        AddCourseModel addCourseModel = new AddCourseModel();
+        Course course = courseService.getById(id);
+
+        addCourseModel.setCourseId(course.getId());
+        addCourseModel.setDrugId(course.getIdDrug());
+
+        model.addAttribute("addCourseModel", addCourseModel);
+        model.addAttribute("drugs", drugService.getAll());
+        model.addAttribute("useTypes", useTypeService.getAll());
+
+        return "EditCourse";
+    }
+
+    @PostMapping("/editSaveCourse")
+    public String editSaveAnime(AddCourseModel addCourseModel, RedirectAttributes redirectAttributes) {
+        Course course = courseService.getById(addCourseModel.getCourseId());
+
+        course.setIdDrug(addCourseModel.getDrugId());
+        course.setIdUseType(addCourseModel.getUseTypeId());
+        course.setDate_start(addCourseModel.getDateStart());
+        course.setDate_end(addCourseModel.getDateEnd());
+        course.setTime(addCourseModel.getTime());
+
+        if (courseService.saveOrUpdate(course)) {
+            redirectAttributes.addFlashAttribute("message", "edit_success");
+            return "redirect:/main";
+        }
+
+        redirectAttributes.addFlashAttribute("message", "edit_error");
+        return "redirect:/editCourse/" + course.getId();
+    }
 
     @GetMapping("/deleteCourse/{id}")
-    public String deleteAnime(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+    public String deleteCourse(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes
+    ) {
+
         if (courseService.deleteById(id)) {
             redirectAttributes.addFlashAttribute("message", "delete_success");
+
         } else {
             redirectAttributes.addFlashAttribute("message", "delete_error");
         }
 
         return "redirect:/main";
     }
-
-//    @GetMapping("/reviewAnime/{id}")
-//    public String reviewAnime(@PathVariable Long id, Model model) {
-//        model.addAttribute("anime", userService.getAnimeById(id));
-//
-//        return "ReviewsAnime";
-//    }
-//
-//    @PostMapping("/reviewSaveAnime")
-//    public String reviewSaveAnime(Anime anime, RedirectAttributes redirectAttributes) {
-//        if (userService.saveOrUpdateAnime(anime)) {
-//            redirectAttributes.addFlashAttribute("message", "Save Success");
-//            return "redirect:/viewAnimeList";
-//        }
-//
-//        redirectAttributes.addFlashAttribute("message", "Save Failure");
-//        return "redirect:/viewAnime/" + anime.getId();
-//    }
 }

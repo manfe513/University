@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class AddCourseModel {
 
+    private Long courseId;
     private Long drugId;
     private Long useTypeId;
 
@@ -50,5 +51,13 @@ public class AddCourseModel {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public Long getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Long courseId) {
+        this.courseId = courseId;
     }
 }
