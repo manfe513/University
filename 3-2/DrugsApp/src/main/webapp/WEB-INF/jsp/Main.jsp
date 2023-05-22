@@ -30,7 +30,6 @@
                 </tr>
 
                 <tr>
-<%--                    <jsp:useBean id="courseInfos" scope="session" type="java.util.ArrayList<com.example.drugs.model.CourseInfo>"/>--%>
                     <c:forEach var="courseInfo" items="${courseInfos}">
                     <td>${courseInfo.drug.name}</td>
                     <td>${courseInfo.useType.name}</td>
@@ -77,7 +76,7 @@
             toastr["error"]("Ошибка удаления")
 
         } else if (msg === "edit_success") {
-            toastr["success"]("Успешно изменено!!")
+            toastr["success"]("Успешно изменено")
         }
 
         toastr.options = {

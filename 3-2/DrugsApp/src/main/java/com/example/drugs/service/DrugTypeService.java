@@ -1,8 +1,6 @@
 package com.example.drugs.service;
 
-import com.example.drugs.model.Drug;
 import com.example.drugs.model.DrugType;
-import com.example.drugs.repo.IDrugRepository;
 import com.example.drugs.repo.IDrugTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
