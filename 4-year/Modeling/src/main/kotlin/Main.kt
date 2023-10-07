@@ -24,7 +24,7 @@ fun createFactories() = hashSetOf(
         1.or(2),
         reqMaxDuration = 60 * 24 * 3, // 3 дня макс делать заявку,
         localResources = hashMapOf(
-            Resource.WORKER to 3,
+            Resource.WORKER to 2,
             Resource.STAND to 1,
             Resource.MACHINE_THIN_CUT to 1,
             Resource.MACHINE_METAL_CUT to 1,

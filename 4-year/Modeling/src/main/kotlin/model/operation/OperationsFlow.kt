@@ -8,7 +8,7 @@ object OperationsFlow {
         DryGlassPocketOperation
     )
 
-    val windowCreation = listOf(
+    val profileCreation = listOf(
         CutProfileOperation,
         CutAmplifierOperation,
         WeldingOperation,

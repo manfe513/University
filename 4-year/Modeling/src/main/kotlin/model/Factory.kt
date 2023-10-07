@@ -4,10 +4,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import model.operation.*
-import java.util.LinkedList
-import java.util.concurrent.Executors
 import kotlin.coroutines.CoroutineContext
-import kotlin.system.exitProcess
 
 class Factory(
 
@@ -17,7 +14,7 @@ class Factory(
     val localResources: HashMap<Resource, Int>
 ) : CoroutineScope {
 
-    private var localProducts = hashMapOf<Product, Int>()
+    private var localProducts = linkedMapOf<Product, Int>()
     private val mutex = Mutex()
 
     suspend fun run() {
@@ -30,19 +27,31 @@ class Factory(
     private suspend fun checkOperationToRun() {
 //        println("----------- Thread: ${Thread.currentThread().name}")
 
-
-        launch {
-            // проверяем, можем ли мы закончить ОКНО
-            pickOperationFromFlow(OperationsFlow.windowCreation)
-                ?.let { runOperation(it) }
-
+        if (
+            localProducts.contains(Product.PROFILE_DONE)
+            && localProducts.contains(Product.GLASS_POCKET).not()
+        ) {
+            delay(10)
+            launch { runGlassCreation() }
+            return
         }
 
-        launch {
-            // теперь проверяем, можем ли сделать стеклопакет
-            pickOperationFromFlow(OperationsFlow.glassCreation)
-                ?.let { runOperation(it) }
-        }
+        launch { runProfileCreation() }
+        launch { runGlassCreation() }
+    }
+
+    private suspend fun runGlassCreation() {
+
+        // проверяем, можем ли мы закончить ОКНО
+        pickOperationFromFlow(OperationsFlow.glassCreation)
+            ?.let { runOperation(it) }
+
+    }
+
+    private suspend fun runProfileCreation() {
+        // теперь проверяем, можем ли сделать стеклопакет
+        pickOperationFromFlow(OperationsFlow.profileCreation)
+            ?.let { runOperation(it) }
     }
 
     private fun pickOperationFromFlow(flow: List<Operation>): Operation? =
