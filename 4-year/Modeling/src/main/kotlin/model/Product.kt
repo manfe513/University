@@ -1,16 +1,19 @@
 package model
 
+/**
+ * Перечисление промежуточных продуктов
+ */
 enum class Product {
 
-    GLASS_CUTTED,
-    GLASS_FRAME,
-    GLASS_POCKET,
+    GLASS_CUTTED, // нарезанное стекло
+    GLASS_FRAME, // рамка
+    GLASS_POCKET, // стеклопакет
 
-    PROFILE_WORKPIECE,
-    PROFILE_WITH_AMPLIFIER,
-    PROFILE_CONNECTED,
-    PROFILE_CLEANED,
-    PROFILE_DONE,
+    PROFILE_WORKPIECE, // заготовка профиля
+    PROFILE_WITH_AMPLIFIER, // профиль с усилителем
+    PROFILE_CONNECTED, // скреплённый профиль
+    PROFILE_CLEANED, // зачищенный профиль
+    PROFILE_DONE, // готовый профиль
 
-    WINDOW_DONE
+    WINDOW_DONE // оконная конструкция (готовый продукт)
 }

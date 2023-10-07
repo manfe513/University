@@ -14,19 +14,22 @@ class Factory(
     val localResources: HashMap<Resource, Int>
 ) : CoroutineScope {
 
+    // что уже на складе, т.е. локально
     private var localProducts = linkedMapOf<Product, Int>()
     private val mutex = Mutex()
 
     suspend fun run() {
+        // будет выполняться пока работает программа
         while (true) {
             launch { checkOperationToRun() }
+            // задержка номинальная, чтобы не забить всю память в стеке
             delay(10)
         }
     }
 
     private suspend fun checkOperationToRun() {
-//        println("----------- Thread: ${Thread.currentThread().name}")
 
+        // если профиль уже на складе, а стеклопакета к нему в пару нет - делать стеклопакет
         if (
             localProducts.contains(Product.PROFILE_DONE)
             && localProducts.contains(Product.GLASS_POCKET).not()
@@ -36,10 +39,13 @@ class Factory(
             return
         }
 
+        // сначала пробуем создать профиль с окном сразу, а потом стекло
+        // (от конечной стадии к начальным)
         launch { runProfileCreation() }
         launch { runGlassCreation() }
     }
 
+    // запуск процесса создания стеклопакета
     private suspend fun runGlassCreation() {
 
         // проверяем, можем ли мы закончить ОКНО
@@ -48,12 +54,15 @@ class Factory(
 
     }
 
+    // запуск процесса создания профиля окна
     private suspend fun runProfileCreation() {
         // теперь проверяем, можем ли сделать стеклопакет
         pickOperationFromFlow(OperationsFlow.profileCreation)
             ?.let { runOperation(it) }
     }
 
+    // выбор операции из процесса (flow)
+    // процессы: создание стеклопакета или профиля
     private fun pickOperationFromFlow(flow: List<Operation>): Operation? =
         flow.reversed()
             .firstOrNull { operation ->
