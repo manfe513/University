@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
 fun createFactories() = hashSetOf(
     Factory(
         1.or(2),
-        reqMaxDuration = 60 * 24 * 3, // 3 дня макс делать заявку,
+        reqMaxDuration = 120, // для наглядности уменьшим
         localResources = hashMapOf(
             Resource.WORKER to 2,
             Resource.STAND to 1,

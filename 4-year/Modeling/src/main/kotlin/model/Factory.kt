@@ -4,7 +4,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import model.operation.*
+import java.util.Date
 import kotlin.coroutines.CoroutineContext
+import kotlin.random.Random
 
 class Factory(
 
@@ -18,16 +20,46 @@ class Factory(
     private var localProducts = linkedMapOf<Product, Int>()
     private val mutex = Mutex()
 
+    private var requestQueue = linkedSetOf<Request>()
+
+    // кол-во штрафов
+    private var fines: Int = 0
+
     suspend fun run() {
         // будет выполняться пока работает программа
+        launch {
+            while (true) {
+                mutex.withLock {
+                    for (i in 1..reqPerHour) {
+                        requestQueue += Request(Date().time)
+                    }
+                }
+                delay(60*10) // в 100 раз уменьшили задержку, т.к. в миллисек
+            }
+        }
+
         while (true) {
-            launch { checkOperationToRun() }
+            mutex.withLock {
+                if (requestQueue.size >0) {
+                    checkOperationToRun()
+                }
+            }
             // задержка номинальная, чтобы не забить всю память в стеке
             delay(10)
         }
     }
 
     private suspend fun checkOperationToRun() {
+
+        // если профиль и стеклопакет на складе - доделать конструкцию
+        if (
+            localProducts.contains(Product.PROFILE_DONE)
+            && localProducts.contains(Product.GLASS_POCKET)
+        ) {
+            delay(10)
+            launch { runProfileCreation() }
+            return
+        }
 
         // если профиль уже на складе, а стеклопакета к нему в пару нет - делать стеклопакет
         if (
@@ -112,6 +144,10 @@ class Factory(
                 else -> localProducts[operation.product] = count + 1
             }
 
+            if (operation.product == Product.WINDOW_DONE) {
+                finishRequest()
+            }
+
             // возвращаем ресурсы
             resources?.forEach { reqResource ->
                 when (val count = localResources[reqResource.key]) {
@@ -123,6 +159,15 @@ class Factory(
 
         println("------------- << Операция окончена")
         printFactoryResources()
+    }
+
+    private fun finishRequest() {
+        val request = requestQueue.first()
+
+        if((Date().time - request.timeCreated)/1000 > reqMaxDuration)
+            fines++
+
+        requestQueue.remove(request)
     }
 
     private fun hasResourcesForOperation(operation: Operation) =
@@ -141,6 +186,7 @@ class Factory(
         localProducts.forEach {
             println("   ${it.key} = ${it.value}")
         }
+        println("- Штрафов: $fines")
     }
 
     override val coroutineContext: CoroutineContext

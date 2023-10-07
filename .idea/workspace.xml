@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="" />
+    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="комментарии">
+      <change afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/model/Request.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/model/Factory.kt" beforeDir="false" afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/model/Factory.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/model/operation/GlassOperations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/model/operation/GlassOperations.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,15 +19,28 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1lPtxNkLE6joIo0NrVQug4Wcq3P" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/URFU/University&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -27,17 +49,36 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607510800022</updated>
+      <workItem from="1696708811993" duration="421000" />
+      <workItem from="1696709241927" duration="599000" />
+      <workItem from="1696710537643" duration="303000" />
     </task>
+    <task id="LOCAL-00001" summary="комментарии">
+      <created>1696708889295</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1696708889295</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="734" y="289" width="827" height="598" key="find.popup" timestamp="1607510973131">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state x="734" y="289" width="827" height="598" key="find.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1607510973131" />
-    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup" timestamp="1607510861966">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state x="687" y="243" width="672" height="678" key="search.everywhere.popup/0.0.2048.1112@0.0.2048.1112" timestamp="1607510861966" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="комментарии" />
+    <option name="LAST_COMMIT_MESSAGE" value="комментарии" />
   </component>
 </project>
