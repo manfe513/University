@@ -1,0 +1,16 @@
+package model
+
+enum class Product {
+
+    GLASS_CUTTED,
+    GLASS_FRAME,
+    GLASS_POCKET,
+
+    PROFILE_WORKPIECE,
+    PROFILE_WITH_AMPLIFIER,
+    PROFILE_CONNECTED,
+    PROFILE_CLEANED,
+    PROFILE_DONE,
+
+    WINDOW_DONE
+}
