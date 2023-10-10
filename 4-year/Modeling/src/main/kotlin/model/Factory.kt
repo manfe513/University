@@ -1,12 +1,13 @@
 package model
 
+import Const.MILLIS_IN_MINUTE
+import OperationRunner
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import model.operation.*
 import java.util.Date
 import kotlin.coroutines.CoroutineContext
-import kotlin.random.Random
 
 class Factory(
 
@@ -21,134 +22,90 @@ class Factory(
     private val mutex = Mutex()
 
     private var requestQueue = linkedSetOf<Request>()
+    private var requestQueueInProgress = linkedSetOf<Request>()
 
     // кол-во штрафов
     private var fines: Int = 0
 
-    suspend fun run() {
-        // будет выполняться пока работает программа
-        launch {
-            while (true) {
-                mutex.withLock {
-                    for (i in 1..reqPerHour) {
-                        requestQueue += Request(Date().time)
-                    }
-                }
-                delay(60*10) // в 100 раз уменьшили задержку, т.к. в миллисек
-            }
-        }
+    private val operationRunner = OperationRunner(factory = this)
 
+    suspend fun run() {
+        launch { runRequestGenerator() }
+        launch { runRequestQueueChecker() }
+    }
+
+    /**
+     * Создает reqPerHour заявок 1 раз в час
+     */
+    private suspend fun runRequestGenerator() {
+        // будет выполняться пока работает программа
         while (true) {
             mutex.withLock {
-                if (requestQueue.size >0) {
-                    checkOperationToRun()
+                for (i in 1..reqPerHour) {
+                    requestQueue += Request(Date().time)
+                }
+            }
+            delay(60L * MILLIS_IN_MINUTE)
+        }
+    }
+
+    private suspend fun runRequestQueueChecker() {
+        while (true) {
+            mutex.withLock {
+                if (requestQueue.size > 0) {
+                    val req = requestQueue.first()
+                    requestQueue.remove(req)
+                    requestQueueInProgress.add(req)
+
+                    operationRunner.runNextOperation()
                 }
             }
             // задержка номинальная, чтобы не забить всю память в стеке
-            delay(10)
+            delay(MILLIS_IN_MINUTE.toLong())
         }
     }
 
-    private suspend fun checkOperationToRun() {
+    suspend fun hasResourcesForOperation(operation: Operation): Boolean = mutex.withLock {
+        val hasRequiredProducts = operation.requiredProducts
+            ?.all { reqProduct -> localProducts.contains(reqProduct) }
+            ?: true
 
-        // если профиль и стеклопакет на складе - доделать конструкцию
-        if (
-            localProducts.contains(Product.PROFILE_DONE)
-            && localProducts.contains(Product.GLASS_POCKET)
-        ) {
-            delay(10)
-            launch { runProfileCreation() }
-            return
-        }
+        val hasResources = operation.resources
+            ?.all { reqResource ->
+                localResources.keys.contains(reqResource.key)
+                        && localResources[reqResource.key]!! >= reqResource.value
+            } ?: true
 
-        // если профиль уже на складе, а стеклопакета к нему в пару нет - делать стеклопакет
-        if (
-            localProducts.contains(Product.PROFILE_DONE)
-            && localProducts.contains(Product.GLASS_POCKET).not()
-        ) {
-            delay(10)
-            launch { runGlassCreation() }
-            return
-        }
-
-        // сначала пробуем создать профиль с окном сразу, а потом стекло
-        // (от конечной стадии к начальным)
-        launch { runProfileCreation() }
-        launch { runGlassCreation() }
+        return hasRequiredProducts
+                && hasResources
     }
 
-    // запуск процесса создания стеклопакета
-    private suspend fun runGlassCreation() {
-
-        // проверяем, можем ли мы закончить ОКНО
-        pickOperationFromFlow(OperationsFlow.glassCreation)
-            ?.let { runOperation(it) }
-
-    }
-
-    // запуск процесса создания профиля окна
-    private suspend fun runProfileCreation() {
-        // теперь проверяем, можем ли сделать стеклопакет
-        pickOperationFromFlow(OperationsFlow.profileCreation)
-            ?.let { runOperation(it) }
-    }
-
-    // выбор операции из процесса (flow)
-    // процессы: создание стеклопакета или профиля
-    private fun pickOperationFromFlow(flow: List<Operation>): Operation? =
-        flow.reversed()
-            .firstOrNull { operation ->
-                val hasRequiredProducts = operation.requiredProducts
-                    ?.all { reqProduct -> localProducts.contains(reqProduct) }
-                    ?: true
-
-                return@firstOrNull hasRequiredProducts
-                        && hasResourcesForOperation(operation)
-            }
-
-
-    private suspend fun runOperation(operation: Operation) = with(operation) {
-
-        println("----------- >> Операция: ${operation.name}")
-        printFactoryResources()
-
-        println(">> Операция начата")
-
+    suspend fun consumeResources(operation: Operation) = with(operation) {
         mutex.withLock {
             // забираем со склада готовые детали, требуемые для операции
             requiredProducts?.forEach { reqProduct ->
-                if (localProducts[reqProduct]!! > 1) {
-                    localProducts[reqProduct] = localProducts[reqProduct]!! - 1
-                } else {
-                    localProducts.remove(reqProduct)
+                when (localProducts[reqProduct]!! > 1) {
+                    true -> localProducts[reqProduct]!! - 1
+                    else -> localProducts.remove(reqProduct)
                 }
             }
 
             // занимаем ресурсы
             resources?.forEach { reqResource ->
-                if (localResources[reqResource.key]!! > reqResource.value) {
-                    localResources[reqResource.key] = localResources[reqResource.key]!! - reqResource.value
-                } else {
-                    localResources.remove(reqResource.key)
+
+                when (localResources[reqResource.key]!! > reqResource.value) {
+
+                    true -> localResources[reqResource.key] =
+                        localResources[reqResource.key]!! - reqResource.value
+
+                    else -> localResources.remove(reqResource.key)
                 }
             }
         }
+    }
 
-        // уменьшили задержку в 100 раз, должно быть * 1000.toLong(), т.к. значение в миллисекундах
-        delay(operation.durationMinutes * 10.toLong())
-
+    suspend fun releaseResources(operation: Operation) = with(operation) {
         mutex.withLock {
-            // добавляем промежуточный продукт "на склад"
-            when (val count = localProducts[operation.product]) {
-                null -> localProducts[operation.product] = 1
-                else -> localProducts[operation.product] = count + 1
-            }
-
-            if (operation.product == Product.WINDOW_DONE) {
-                finishRequest()
-            }
-
-            // возвращаем ресурсы
             resources?.forEach { reqResource ->
                 when (val count = localResources[reqResource.key]) {
                     null -> localResources[reqResource.key] = reqResource.value
@@ -156,28 +113,26 @@ class Factory(
                 }
             }
         }
-
-        println("------------- << Операция окончена")
-        printFactoryResources()
     }
 
-    private fun finishRequest() {
-        val request = requestQueue.first()
+    suspend fun finishRequest() = mutex.withLock {
+        val request = requestQueueInProgress.first()
 
-        if((Date().time - request.timeCreated)/1000 > reqMaxDuration)
+        if ((Date().time - request.timeCreated) / MILLIS_IN_MINUTE > reqMaxDuration)
             fines++
 
-        requestQueue.remove(request)
+        requestQueueInProgress.remove(request)
     }
 
-    private fun hasResourcesForOperation(operation: Operation) =
-        operation.resources
-            ?.all { reqResource ->
-                localResources.keys.contains(reqResource.key)
-                        && localResources[reqResource.key]!! >= reqResource.value
-            } ?: true
+    suspend fun addProduct(product: Product) = mutex.withLock {
 
-    private fun printFactoryResources() {
+        when (val count = localProducts[product]) {
+            null -> localProducts[product] = 1
+            else -> localProducts[product] = count + 1
+        }
+    }
+
+    suspend fun printFactoryResources() = mutex.withLock {
         println("- ресурсы предприятия:")
         localResources.forEach {
             println("   ${it.key} = ${it.value}")
@@ -190,7 +145,7 @@ class Factory(
     }
 
     override val coroutineContext: CoroutineContext
-        get() = Dispatchers.Unconfined + CoroutineExceptionHandler { coroutineContext, throwable ->
+        get() = Dispatchers.Unconfined + CoroutineExceptionHandler { _, throwable ->
             throwable.printStackTrace()
         }
 }

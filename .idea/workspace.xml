@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="комментарии">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/ext/Int.kt" beforeDir="false" afterPath="$PROJECT_DIR$/4-year/Modeling/src/main/kotlin/ext/Int.kt" afterDir="false" />
-    </list>
+    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="добавлены 4 предприятия" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +46,7 @@
       <workItem from="1696708811993" duration="421000" />
       <workItem from="1696709241927" duration="599000" />
       <workItem from="1696710537643" duration="1213000" />
+      <workItem from="1696711760943" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="комментарии">
       <created>1696708889295</created>
@@ -65,7 +62,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696710875055</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="добавлены 4 предприятия">
+      <created>1696711833542</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1696711833542</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,6 +88,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="комментарии" />
-    <option name="LAST_COMMIT_MESSAGE" value="комментарии" />
+    <MESSAGE value="добавлены 4 предприятия" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавлены 4 предприятия" />
   </component>
 </project>
