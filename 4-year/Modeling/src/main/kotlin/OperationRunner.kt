@@ -1,3 +1,4 @@
+import Const.MILLIS_IN_MINUTE
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.withLock
 import model.Factory
@@ -19,18 +20,18 @@ class OperationRunner(
 
         // если профиль уже на складе, а стеклопакета к нему в пару нет - делать стеклопакет
 //        if (
-//            localProducts.contains(Product.PROFILE_DONE)
-//            && localProducts.contains(Product.GLASS_POCKET).not()
+//            factory.hasProduct(Product.PROFILE_DONE)
+//            && factory.hasProduct(Product.GLASS_POCKET).not()
 //        ) {
 //            delay(MILLIS_IN_MINUTE.toLong())
 //            launch { runGlassCreation() }
 //            return
 //        }
 
+        launch { runGlassCreation() }
         // сначала пробуем создать профиль с окном сразу, а потом стекло
         // (от конечной стадии к начальным)
-//        launch { runProfileCreation() }
-        launch { runGlassCreation() }
+        launch { runProfileCreation() }
     }
 
     // запуск процесса создания стеклопакета
@@ -49,8 +50,7 @@ class OperationRunner(
             ?.let { runOperation(it) }
     }
 
-    // выбор операции из процесса (flow)
-    // процессы: создание стеклопакета или профиля
+    // выбор операции из процессов: создать стеклопакет или профиль
     private suspend fun pickOperationFromFlow(flow: List<Operation>): Operation? =
         flow.reversed()
             .firstOrNull { operation -> factory.hasResourcesForOperation(operation) }
@@ -60,6 +60,7 @@ class OperationRunner(
         println("----------- >> Начало операциии: ${operation.name}")
         factory.printFactoryResources()
 
+        // занимаем необходимые для операции ресурсы и промежуточные продукты
         factory.consumeResources(operation)
 
         // задержка = выполнение операции
@@ -68,10 +69,12 @@ class OperationRunner(
         // добавляем промежуточный продукт "на склад"
         factory.addProduct(product)
 
+        // если изготовили всю оконную конструкцию - проверить время на штраф
         if (operation.product == Product.WINDOW_DONE) {
             factory.finishRequest()
         }
 
+        // освободить занятые дял операции ресурсы
         factory.releaseResources(this)
 
         println("------------- << Операция окончена")

@@ -22,7 +22,7 @@ object CutProfileOperation : Operation(
  * Резка усилителя
  */
 object CutAmplifierOperation : Operation(
-    requiredProducts = null,
+    requiredProducts = setOf(Product.PROFILE_WORKPIECE),
     name = "Резка усилителя",
     resources = hashMapOf(
         Resource.MACHINE_METAL_CUT to 1,

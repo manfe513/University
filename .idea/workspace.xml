@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="добавлены 4 предприятия" />
+    <list default="true" id="a9b0db0f-55be-41e8-8652-53331e53f0e8" name="Default Changelist" comment="refactor" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,6 +47,7 @@
       <workItem from="1696709241927" duration="599000" />
       <workItem from="1696710537643" duration="1213000" />
       <workItem from="1696711760943" duration="77000" />
+      <workItem from="1696972272407" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="комментарии">
       <created>1696708889295</created>
@@ -69,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1696711833542</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor">
+      <created>1696972283376</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1696972283376</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,6 +97,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="комментарии" />
     <MESSAGE value="добавлены 4 предприятия" />
-    <option name="LAST_COMMIT_MESSAGE" value="добавлены 4 предприятия" />
+    <MESSAGE value="refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
   </component>
 </project>

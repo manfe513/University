@@ -1,20 +1,21 @@
-import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Unconfined
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 @OptIn(DelicateCoroutinesApi::class)
 fun main(args: Array<String>) {
     println("Hello World!")
 
-    FactoriesCreator.create()
-        .forEach { factory ->
-            GlobalScope.run {
-                launch(Unconfined) {
-                    factory.run()
+    GlobalScope.run {
+        runBlocking {
+            val jobs = FactoriesCreator.create()
+                .map { factory ->
+                    launch(Unconfined) { factory.run() }
                 }
+            delay(Const.WORKING_PERIOD_MINUTES.toLong())
+            jobs.forEach {
+                it.cancel()
+                it.join()
             }
         }
-
-    Thread.currentThread().join()
+    }
 }

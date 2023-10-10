@@ -40,6 +40,6 @@ object DryGlassPocketOperation : Operation(
     name = "Сушка",
     resources = null,
     // для наглядности уменьшили время сушки
-    durationMinutes = 60, // 60*24.inRangeTo(60*24*3), // 60*24 = количество минут в 1 сутках
+    durationMinutes = 60*3, // 3 часа
     product = Product.GLASS_POCKET
 )

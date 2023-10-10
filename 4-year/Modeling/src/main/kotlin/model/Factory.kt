@@ -49,6 +49,8 @@ class Factory(
         }
     }
 
+    suspend fun hasProduct(product: Product) = mutex.withLock { localProducts.contains(product) }
+
     private suspend fun runRequestQueueChecker() {
         while (true) {
             mutex.withLock {
