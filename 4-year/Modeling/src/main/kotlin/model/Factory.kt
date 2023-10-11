@@ -9,11 +9,17 @@ import model.operation.*
 import java.util.Date
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Описание структуры предприятия
+ */
 class Factory(
 
+    // число поступающих запросов на оконные конструкции в час
     val reqPerHour: Int,
+    // максимальное время выполнения одной операции
     val reqMaxDuration: Int,
 
+    // локальные ресурсы предприятия
     val localResources: HashMap<Resource, Int>
 ) : CoroutineScope {
 

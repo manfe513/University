@@ -1,12 +1,13 @@
-import Const.MILLIS_IN_MINUTE
 import kotlinx.coroutines.*
-import kotlinx.coroutines.sync.withLock
 import model.Factory
 import model.Product
 import model.operation.Operation
 import model.operation.OperationsFlow
 import kotlin.coroutines.CoroutineContext
 
+/**
+ * Вспомогательный класс для запуска операций из процессов
+ */
 class OperationRunner(
     private val factory: Factory
 ) : CoroutineScope {
@@ -17,16 +18,6 @@ class OperationRunner(
         }
 
     suspend fun runNextOperation() {
-
-        // если профиль уже на складе, а стеклопакета к нему в пару нет - делать стеклопакет
-//        if (
-//            factory.hasProduct(Product.PROFILE_DONE)
-//            && factory.hasProduct(Product.GLASS_POCKET).not()
-//        ) {
-//            delay(MILLIS_IN_MINUTE.toLong())
-//            launch { runGlassCreation() }
-//            return
-//        }
 
         launch { runGlassCreation() }
         // сначала пробуем создать профиль с окном сразу, а потом стекло

@@ -1,6 +1,5 @@
 package model.operation
 
-import ext.inRangeTo
 import ext.plusMinus
 import model.Product
 import model.Resource
