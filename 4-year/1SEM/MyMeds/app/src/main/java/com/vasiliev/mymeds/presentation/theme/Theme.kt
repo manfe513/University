@@ -1,4 +1,4 @@
-package com.vasiliev.mymeds.ui.theme
+package com.vasiliev.mymeds.presentation.theme
 
 import android.app.Activity
 import android.os.Build

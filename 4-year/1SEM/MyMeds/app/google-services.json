@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "486293268436",
+    "project_id": "mymeds-74b51",
+    "storage_bucket": "mymeds-74b51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:486293268436:android:096acb1c26e245c6ab9841",
+        "android_client_info": {
+          "package_name": "com.vasilyev.mymeds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "486293268436-hpjeuj03rb8ovi8b9vsfq7dq9qpsc3j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSAukiS-fEQGUPTS9UWop09ostnVjmXZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "486293268436-hpjeuj03rb8ovi8b9vsfq7dq9qpsc3j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

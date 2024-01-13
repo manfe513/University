@@ -1,4 +1,4 @@
-package com.vasiliev.mymeds.model
+package com.vasiliev.mymeds.data.model
 
 enum class DrugType {
     TABLETKI,

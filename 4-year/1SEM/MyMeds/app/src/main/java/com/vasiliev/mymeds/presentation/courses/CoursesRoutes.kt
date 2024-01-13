@@ -1,4 +1,4 @@
-package com.vasiliev.mymeds.courses
+package com.vasiliev.mymeds.presentation.courses
 
 object CoursesRoutes {
 

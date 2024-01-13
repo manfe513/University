@@ -1,4 +1,4 @@
-package com.vasiliev.mymeds.courses
+package com.vasiliev.mymeds.presentation.courses
 
 import DatePickerWithDialog
 import androidx.compose.foundation.layout.Column
@@ -12,18 +12,20 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.core.os.ConfigurationCompat
 import androidx.navigation.NavController
 import com.vasiliev.mymeds.data.Repo
-import com.vasiliev.mymeds.model.Course
-import com.vasiliev.mymeds.model.Drug
-import com.vasiliev.mymeds.model.DrugType
-import com.vasiliev.mymeds.model.DrugUseType
+import com.vasiliev.mymeds.data.model.Course
+import com.vasiliev.mymeds.data.model.Drug
+import com.vasiliev.mymeds.data.model.DrugType
+import com.vasiliev.mymeds.data.model.DrugUseType
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import java.util.Date
 
 @Composable
-fun AddCourse(
+fun CourseInfoScreen(
     navController: NavController,
-    repo: Repo
+    repo: Repo,
+    courseId: String? = null
 ) {
 
     var drugName = ""
@@ -103,13 +105,15 @@ fun AddCourse(
                 drug = Drug(
                     name = drugName,
                     description = drugDescr,
-                    drugType = drugType
+                    type = drugType
                 ),
                 drugUseType = drugUseType,
+                alarmTime = LocalTime.now(),
                 dateStart = dateStart,
                 dateEnd = dateEnd
             )
         )
+        navController.navigate(route = CoursesRoutes.coursesList())
     }) {
         Text(text = "Сохранить")
     }

@@ -1,4 +1,4 @@
-package com.vasiliev.mymeds.ui.theme
+package com.vasiliev.mymeds.presentation.theme
 
 import androidx.compose.ui.graphics.Color
 
