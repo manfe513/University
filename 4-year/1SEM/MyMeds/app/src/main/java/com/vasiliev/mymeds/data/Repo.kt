@@ -1,6 +1,5 @@
 package com.vasiliev.mymeds.data
 
-import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.vasiliev.mymeds.MainActivity
