@@ -4,7 +4,8 @@ data class User (
     val id: String? = null,
     val name: String? = null,
     val age: Int? = null,
-    val email: String? = null
+    val email: String? = null,
+    val courses: List<Course> = arrayListOf()
 ) {
 
 
