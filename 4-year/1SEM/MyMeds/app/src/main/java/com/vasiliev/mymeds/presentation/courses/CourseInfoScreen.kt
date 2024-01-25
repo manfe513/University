@@ -15,7 +15,7 @@ import com.vasiliev.mymeds.data.Repo
 import com.vasiliev.mymeds.data.model.Course
 import com.vasiliev.mymeds.data.model.Drug
 import com.vasiliev.mymeds.data.model.DrugType
-import com.vasiliev.mymeds.data.model.DrugUseType
+import com.vasiliev.mymeds.data.model.FoodCompatibility
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -31,7 +31,7 @@ fun CourseInfoScreen(
     var drugName = ""
     var drugDescr = ""
     var drugType = DrugType.TABLETKI
-    var drugUseType = DrugUseType.POSLE_EDI
+    var drugUseType = FoodCompatibility.POSLE_EDI
     var dateStart: Date = Date()
     var dateEnd: Date = Date()
 
@@ -66,7 +66,7 @@ fun CourseInfoScreen(
             onDismissRequest = {}
         ) {
             // adding items
-            DrugUseType.entries.forEach { _drugUseType ->
+            FoodCompatibility.entries.forEach { _drugUseType ->
                 DropdownMenuItem(
                     text = { Text(text = _drugUseType.name) },
                     onClick = { drugUseType = _drugUseType }
@@ -107,7 +107,7 @@ fun CourseInfoScreen(
                     description = drugDescr,
                     type = drugType
                 ),
-                drugUseType = drugUseType,
+                foodCompatibility = drugUseType,
                 alarmTime = LocalTime.now(),
                 dateStart = dateStart,
                 dateEnd = dateEnd

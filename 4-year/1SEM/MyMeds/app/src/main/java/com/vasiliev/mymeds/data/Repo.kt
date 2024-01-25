@@ -23,7 +23,7 @@ object Repo {
             .document(course.id)
             .update(mapOf(
                 Course.FIELD_DRUG to course.drug,
-                Course.FIELD_DRUG_USE_TYPE to course.drugUseType,
+                Course.FIELD_DRUG_FOOD_COMPATIBILITY to course.foodCompatibility,
                 Course.FIELD_DATE_START to course.dateStart,
                 Course.FIELD_DATE_END to course.dateEnd
             ))

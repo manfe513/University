@@ -59,7 +59,7 @@ fun CourseItem(
             Text(text = course.drug.name)
             Text(text = course.drug.description)
             Text(text = course.drug.type.name)
-            Text(text = course.drugUseType.name)
+            Text(text = course.foodCompatibility.name)
         }
         Column {
             Text(text = course.dateStart.toString())
